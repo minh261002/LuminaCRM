@@ -11,29 +11,27 @@
         </div>
 
         <div class="auth-title-section mb-3 text-center">
-            <h3 class="text-dark fs-20 fw-medium mb-2">Xin Chào!</h3>
+            <h3 class="text-dark fs-20 fw-medium mb-2">Đặt lại mật khẩu</h3>
             <p class="text-dark text-capitalize fs-14 mb-0">
-                Đăng nhập để tiếp tục.
+                Vui lòng nhập mật khẩu mới của bạn.
             </p>
         </div>
 
         <div class="pt-0">
-            <form id="loginForm" action="{{ route('authenticate') }}" class="my-4" method="POST" novalidate>
+            <form id="loginForm" action="{{ route('password.update') }}" class="my-4" method="POST" novalidate>
                 @csrf
+                <input type="hidden" name="token" value="{{ $token ?? '' }}">
                 <div class="form-group mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}"
-                        autocomplete="email" required>
+                    <input id="email" class="form-control" type="email" name="email"
+                        value="{{ old('email', $email ?? '') }}" autocomplete="email" required>
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group mb-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <label for="password" class="form-label">Mật khẩu</label>
-                        <a href="{{ route('password.forgot') }}" class="text-muted fs-12">Quên mật khẩu?</a>
-                    </div>
+                    <label for="password" class="form-label">Mật khẩu</label>
                     <div class="input-group">
                         <input id="password" class="form-control" type="password" name="password"
                             autocomplete="current-password" required>
@@ -46,11 +44,26 @@
                     @enderror
                 </div>
 
+                <div class="form-group mb-3">
+                    <label for="password_confirmation" class="form-label">Mật khẩu</label>
+                    <div class="input-group">
+                        <input id="password_confirmation" class="form-control" type="password" name="password_confirmation"
+                            autocomplete="current-password" required>
+                        <button class="input-group-text" type="button" id="showPasswordConfirmation"
+                            aria-label="Hiển thị mật khẩu">
+                            <i data-feather="eye" class="noti-icon cursor-pointer"></i>
+                        </button>
+                    </div>
+                    @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group mb-0 row">
                     <div class="col-12">
                         <div class="d-grid">
                             <button class="btn btn-primary" type="submit" id="loginBtn">
-                                Đăng nhập
+                                Đặt lại mật khẩu
                             </button>
                         </div>
                     </div>
@@ -66,7 +79,7 @@
         let isSubmitting = false;
 
         $('#loginForm').on('submit', function(e) {
-            if (isSubmitting) return; // chặn double
+            if (isSubmitting) return;
             e.preventDefault();
 
             isSubmitting = true;

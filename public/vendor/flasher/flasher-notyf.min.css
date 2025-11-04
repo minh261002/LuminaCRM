@@ -355,7 +355,7 @@
     display: block;
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
-    max-width: 400px;
+    max-width: 640px;
     overflow: hidden;
     padding: 0 15px;
     pointer-events: auto;
@@ -417,7 +417,7 @@
     -moz-animation: ripple 0.4s ease-out forwards;
     animation: ripple 0.4s ease-out forwards;
     border-radius: 50%;
-    height: 400px;
+    height: 1200px;
     position: absolute;
     right: 0;
     top: 0;
@@ -429,7 +429,7 @@
     -moz-transform-origin: bottom right;
     -ms-transform-origin: bottom right;
     transform-origin: bottom right;
-    width: 400px;
+    width: 1200px;
     z-index: 5;
 }
 .notyf__wrapper {
@@ -542,8 +542,8 @@
         -webkit-animation-duration: 0.5s;
         -moz-animation-duration: 0.5s;
         animation-duration: 0.5s;
-        height: 600px;
-        width: 600px;
+        height: 900px;
+        width: 900px;
     }
     .notyf__toast {
         border-radius: 0;
