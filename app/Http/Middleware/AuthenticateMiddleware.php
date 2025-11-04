@@ -17,10 +17,11 @@ class AuthenticateMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
+            notyf()->error('Vui lòng đăng nhập để truy cập nội dung này');
             return redirect()->route(
                 'login',
                 ['redirect' => $request->fullUrl()]
-            )->with('error', 'Vui lòng đăng nhập để truy cập nội dung này');
+            );
         }
         return $next($request);
     }
