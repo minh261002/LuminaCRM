@@ -20,11 +20,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             session()->regenerate();
 
+            notyf()->success('Đăng nhập thành công');
             return redirect()->route('dashboard');
         }
 
         notyf()->error('Thông tin đăng nhập không chính xác');
-
         return back()->onlyInput('email');
     }
 
@@ -105,6 +105,4 @@ class AuthController extends Controller
         notyf()->error('Đặt lại mật khẩu thất bại.');
         return back()->withErrors(['email' => [__($status)]]);
     }
-
-    // lock screen feature removed
 }

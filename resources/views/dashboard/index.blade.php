@@ -1,6 +1,9 @@
-<form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit">
-        Logoout
-    </button>
-</form>
+@extends('layouts.master')
+
+@section('title', 'Bảng điều khiển')
+
+@section('content')
+    <div class="container-fluid">
+
+    </div>
+@endsection
