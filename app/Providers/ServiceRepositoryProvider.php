@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class ServiceRepositoryProvider extends ServiceProvider
+{
+    protected $repositories = [
+        'App\Repositories\BaseRepositoryInterface' => 'App\Repositories\BaseRepository',
+    ];
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        foreach ($this->repositories as $interface => $repository) {
+            $this->app->bind($interface, $repository);
+        }
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+}
