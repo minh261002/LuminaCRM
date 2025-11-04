@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class ServiceServiceProvider extends ServiceProvider
 {
     protected $services = [
-
+        'App\Services\Module\ModuleServiceInterface' => 'App\Services\Module\ModuleService',
     ];
     public function register(): void
     {

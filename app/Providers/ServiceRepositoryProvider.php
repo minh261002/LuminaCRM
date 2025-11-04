@@ -8,6 +8,7 @@ class ServiceRepositoryProvider extends ServiceProvider
 {
     protected $repositories = [
         'App\Repositories\BaseRepositoryInterface' => 'App\Repositories\BaseRepository',
+        'App\Repositories\Module\ModuleRepositoryInterface' => 'App\Repositories\Module\ModuleRepository',
     ];
     /**
      * Register services.
