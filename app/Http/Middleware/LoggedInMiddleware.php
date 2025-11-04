@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateMiddleware
+class LoggedInMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,8 @@ class AuthenticateMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
-            return redirect()->route(
-                'login',
-                ['redirect' => $request->fullUrl()]
-            )->with('error', 'Vui lòng đăng nhập để truy cập nội dung này');
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
         }
         return $next($request);
     }
