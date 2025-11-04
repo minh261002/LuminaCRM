@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('authenticate')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

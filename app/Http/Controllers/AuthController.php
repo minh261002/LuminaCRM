@@ -46,6 +46,9 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => ['required','email']
+        ],[
+            'email.required' => 'Email là bắt buộc',
+            'email.email' => 'Email không hợp lệ',
         ]);
 
         $status = \Illuminate\Support\Facades\Password::sendResetLink(
@@ -53,11 +56,11 @@ class AuthController extends Controller
         );
 
         if ($status === \Illuminate\Support\Facades\Password::RESET_LINK_SENT) {
-            notyf()->success(__('Liên kết đặt lại mật khẩu đã được gửi.'));
+            notyf()->success('Liên kết đặt lại mật khẩu đã được gửi.');
             return back()->with(['status' => __($status)]);
         }
 
-        notyf()->error(__('Không thể gửi liên kết đặt lại mật khẩu.'));
+        notyf()->error('Không thể gửi liên kết đặt lại mật khẩu.');
         return back()->withErrors(['email' => __($status)]);
     }
 
@@ -74,7 +77,14 @@ class AuthController extends Controller
         $request->validate([
             'token' => ['required'],
             'email' => ['required','email'],
-            'password' => ['required','confirmed','min:8']
+            'password' => ['required','confirmed','min:6']
+        ], [
+            'password.required' => 'Mật khẩu là bắt buộc',
+            'password.confirmed' => 'Mật khẩu không khớp',
+            'password.min' => 'Mật khẩu phải ít nhất 6 ký tự',
+            'email.required' => 'Email là bắt buộc',
+            'email.email' => 'Email không hợp lệ',
+            'token.required' => 'Token là bắt buộc',
         ]);
 
         $status = \Illuminate\Support\Facades\Password::reset(
@@ -88,11 +98,13 @@ class AuthController extends Controller
         );
 
         if ($status === \Illuminate\Support\Facades\Password::PASSWORD_RESET) {
-            notyf()->success(__('Đặt lại mật khẩu thành công. Vui lòng đăng nhập.'));
+            notyf()->success('Đặt lại mật khẩu thành công. Vui lòng đăng nhập.');
             return redirect()->route('login');
         }
 
-        notyf()->error(__('Đặt lại mật khẩu thất bại.'));
+        notyf()->error('Đặt lại mật khẩu thất bại.');
         return back()->withErrors(['email' => [__($status)]]);
     }
+
+    // lock screen feature removed
 }

@@ -70,6 +70,9 @@
                 </div>
             </form>
 
+            <a href="{{ route('login') }}">
+                Quay lại đăng nhập
+            </a>
         </div>
     </div>
 @endsection

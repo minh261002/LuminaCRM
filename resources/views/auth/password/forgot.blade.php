@@ -40,6 +40,9 @@
                 </div>
             </form>
 
+            <a href="{{ route('login') }}" class="text-center">
+                Quay lại đăng nhập
+            </a>
         </div>
     </div>
 @endsection
