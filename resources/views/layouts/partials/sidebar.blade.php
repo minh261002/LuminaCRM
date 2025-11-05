@@ -84,8 +84,8 @@
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
-                <li class="nav-item {{ setSidebarActive(['dashboard.*']) }}">
-                    <a class="nav-link  {{ setSidebarShow(['dashboard.*']) }}" href="{{ route('dashboard') }}">
+                <li class="nav-item {{ setSidebarActive(['dashboard']) }}">
+                    <a class="nav-link  {{ setSidebarShow(['dashboard']) }}" href="{{ route('dashboard') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <i class="ti ti-home-2 fs-2"></i>
                         </span>

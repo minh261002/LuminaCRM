@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Gender;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->integer('lat')->nullable();
+            $table->integer('lng')->nullable();
             $table->string('avatar')->default('/assets/img/not-found.jpg');
+            $table->unsignedBigInteger('branch_id')->nullable();
+            $table->enum('gender', Gender::getValues())->nullable();
+            $table->string('type_document')->nullable();
+            $table->string('n_document')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
