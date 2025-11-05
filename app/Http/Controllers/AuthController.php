@@ -15,18 +15,21 @@ class AuthController extends Controller
 
     public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->validated();
+        $credentials = $request->only('email', 'password');
+        $remember = $request->boolean('remember');
+        $redirectUrl = $request->input('redirect_url');
 
-        if (Auth::attempt($credentials)) {
-            session()->regenerate();
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
 
             notyf()->success('Đăng nhập thành công');
-            return redirect()->route('dashboard');
+            return redirect()->intended($redirectUrl ?? route('dashboard'));
         }
 
         notyf()->error('Thông tin đăng nhập không chính xác');
         return back()->onlyInput('email');
     }
+
 
     public function logout(Request $request){
         Auth::logout();

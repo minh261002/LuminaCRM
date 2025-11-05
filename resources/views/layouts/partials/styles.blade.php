@@ -15,9 +15,16 @@
 <link href="/assets/css/jquery-ui.theme.min.css" rel="stylesheet" />
 
 {{-- icons --}}
-
 <link href="/assets/icons/tabler-icons.min.css" rel="stylesheet" />
 <link href="/assets/icons/tabler-icons-filled.min.css" rel="stylesheet" />
 <link href="/assets/icons/tabler-icons-outline.min.css" rel="stylesheet" />
+
+<style>
+    @import url("https://rsms.me/inter/inter.css");
+
+    .cursor-pointer {
+        cursor: pointer !important;
+    }
+</style>
 
 @stack('styles')

@@ -13,13 +13,10 @@
     </title>
 
     @include('layouts.partials.styles')
-    <style>
-        @import url("https://rsms.me/inter/inter.css");
-    </style>
 </head>
 
 <body>
-    <script src="/assets/js/tabler-theme.min.js?1762283331"></script>
+    <script src="/assets/js/tabler-theme.min.js"></script>
     <div class="page">
         @include('layouts.partials.sidebar')
         @include('layouts.partials.header')

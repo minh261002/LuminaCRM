@@ -24,14 +24,16 @@ class LoginRequest extends FormRequest
         return [
             'email' => 'required|email',
             'password' => 'required',
+            'remember' => 'nullable',
+            'redirect_url' => 'nullable',
         ];
     }
 
     public function messages(){
         return [
-            'email.required' => 'Email là không được để trống',
+            'email.required' => 'Email không được để trống',
             'email.email' => 'Email không hợp lệ',
-            'password.required' => 'Mật khẩu là không được để trống',
+            'password.required' => 'Mật khẩu không được để trống'
         ];
     }
 }
