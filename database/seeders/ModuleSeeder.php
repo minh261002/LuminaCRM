@@ -40,6 +40,14 @@ class ModuleSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'id'=> 4,
+                'name' => 'Quản lý nhân viên',
+                'description' => 'Quản lý nhân viên',
+                'status' => ModuleStatus::Completed->value,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
 
         //Permission
@@ -116,6 +124,30 @@ class ModuleSeeder extends Seeder
                 'guard_name' => 'web',
                 'module_id' => 3,
             ],
+            [
+                'title' => 'Xem nhân viên',
+                'name' => 'viewUser',
+                'guard_name' => 'web',
+                'module_id' => 4,
+            ],
+            [
+                'title' => 'Tạo nhân viên',
+                'name' => 'createUser',
+                'guard_name' => 'web',
+                'module_id' => 4,
+            ],
+            [
+                'title' => 'Sửa nhân viên',
+                'name' => 'editUser',
+                'guard_name' => 'web',
+                'module_id' => 4,
+            ],
+            [
+                'title' => 'Xóa nhân viên',
+                'name' => 'deleteUser',
+                'guard_name' => 'web',
+                'module_id' => 4,
+            ],
         ]);
 
         //Role
@@ -178,6 +210,18 @@ class ModuleSeeder extends Seeder
             ],
             [
                 'permission_id' => 12,
+                'role_id' => 1,
+            ],
+            [
+                'permission_id' => 13,
+                'role_id' => 1,
+            ],
+            [
+                'permission_id' => 14,
+                'role_id' => 1,
+            ],
+            [
+                'permission_id' => 15,
                 'role_id' => 1,
             ],
         ]);

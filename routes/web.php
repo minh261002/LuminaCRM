@@ -30,22 +30,55 @@ Route::middleware('authenticate')->group(function(){
     });
 
     Route::prefix('permissions')->as('permissions.')->group(function(){
-        Route::get('/', [PermissionController::class, 'index'])->name('index');
-        Route::get('/create', [PermissionController::class, 'create'])->name('create');
-        Route::post('/', [PermissionController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [PermissionController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [PermissionController::class, 'update'])->name('update');
-        Route::delete('/{id}', [PermissionController::class, 'delete'])->name('delete');
+        Route::middleware('permission:viewPermission')->group(function(){
+            Route::get('/', [PermissionController::class, 'index'])->name('index');
+        });
+        Route::middleware('permission:createPermission')->group(function(){
+            Route::get('/create', [PermissionController::class, 'create'])->name('create');
+            Route::post('/', [PermissionController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editPermission')->group(function(){
+            Route::get('/{id}/edit', [PermissionController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [PermissionController::class, 'update'])->name('update');
+        });
+        Route::middleware('permission:deletePermission')->group(function(){
+            Route::delete('/{id}', [PermissionController::class, 'delete'])->name('delete');
+        });
     });
 
 
     Route::prefix('roles')->as('roles.')->group(function(){
-        Route::get('/', [RoleController::class, 'index'])->name('index');
-        Route::get('/create', [RoleController::class, 'create'])->name('create');
-        Route::post('/', [RoleController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [RoleController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [RoleController::class, 'update'])->name('update');
-        Route::delete('/{id}', [RoleController::class, 'delete'])->name('delete');
+        Route::middleware('permission:viewRole')->group(function(){
+            Route::get('/', [RoleController::class, 'index'])->name('index');
+        });
+        Route::middleware('permission:createRole')->group(function(){
+            Route::get('/create', [RoleController::class, 'create'])->name('create');
+            Route::post('/', [RoleController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editRole')->group(function(){
+            Route::get('/{id}/edit', [RoleController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [RoleController::class, 'update'])->name('update');
+        });
+        Route::middleware('permission:deleteRole')->group(function(){
+            Route::delete('/{id}', [RoleController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('users')->as('users.')->group(function(){
+        Route::middleware('permission:viewRole')->group(function(){
+            Route::get('/', [RoleController::class, 'index'])->name('index');
+        });
+        Route::middleware('permission:createRole')->group(function(){
+            Route::get('/create', [RoleController::class, 'create'])->name('create');
+            Route::post('/', [RoleController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editRole')->group(function(){
+            Route::get('/{id}/edit', [RoleController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [RoleController::class, 'update'])->name('update');
+        });
+        Route::middleware('permission:deleteRole')->group(function(){
+            Route::delete('/{id}', [RoleController::class, 'delete'])->name('delete');
+        });
     });
 
 });
