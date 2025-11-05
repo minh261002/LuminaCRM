@@ -22,7 +22,8 @@ class ModuleController extends Controller
 
     public function index()
     {
-        return view('module.index');
+        $modules = $this->repository->getAll();
+        return view('module.index', compact('modules'));
     }
 
     public function create()

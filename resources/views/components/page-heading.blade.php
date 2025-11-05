@@ -1,28 +1,34 @@
-@props([
-    'title' => '',
-    'breadcrumbs' => [],
-])
+@props(['title', 'pretitle' => null, 'breadcrumbs' => []])
 
-<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
-    <div class="flex-grow-1">
-        <h4 class="fs-18 fw-semibold m-0">
-            {{ $title }}
-        </h4>
-    </div>
-
-    <div class="text-end d-flex align-items-center gap-2">
-        @if (!empty($breadcrumbs))
-            <ol class="breadcrumb m-0 py-0">
-                @foreach ($breadcrumbs as $index => $breadcrumb)
-                    @php $isLast = $index === count($breadcrumbs) - 1; @endphp
-                    @if ($isLast)
-                        <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['name'] }}</li>
-                    @else
-                        <li class="breadcrumb-item"><a
-                                href="{{ $breadcrumb['url'] ?? '#' }}">{{ $breadcrumb['name'] }}</a></li>
-                    @endif
-                @endforeach
-            </ol>
-        @endif
+<div class="page-header d-print-none" aria-label="Page header">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                @if ($pretitle)
+                    <div class="page-pretitle">{{ $pretitle }}</div>
+                @endif
+                <h2 class="page-title">{{ $title }}</h2>
+            </div>
+            @if (!empty($breadcrumbs))
+                <div class="col-auto ms-auto d-print-none">
+                    <ol class="breadcrumb breadcrumb-arrows" aria-label="breadcrumbs">
+                        @foreach ($breadcrumbs as $index => $breadcrumb)
+                            @php
+                                $isLast = $index === count($breadcrumbs) - 1;
+                                $isActive = $isLast && !isset($breadcrumb['url']);
+                            @endphp
+                            <li class="breadcrumb-item {{ $isActive ? 'active' : '' }}"
+                                @if ($isActive) aria-current="page" @endif>
+                                @if (isset($breadcrumb['url']) && !$isActive)
+                                    <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+                                @else
+                                    <a href="#">{{ $breadcrumb['name'] }}</a>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ol>
+                </div>
+            @endif
+        </div>
     </div>
 </div>
