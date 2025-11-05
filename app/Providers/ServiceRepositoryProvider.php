@@ -10,6 +10,7 @@ class ServiceRepositoryProvider extends ServiceProvider
         'App\Repositories\BaseRepositoryInterface' => 'App\Repositories\BaseRepository',
         'App\Repositories\Module\ModuleRepositoryInterface' => 'App\Repositories\Module\ModuleRepository',
         'App\Repositories\Permission\PermissionRepositoryInterface' => 'App\Repositories\Permission\PermissionRepository',
+        'App\Repositories\Role\RoleRepositoryInterface' => 'App\Repositories\Role\RoleRepository',
     ];
     /**
      * Register services.
