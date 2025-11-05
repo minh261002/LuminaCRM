@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Module;
 
-use App\Admin\Http\Requests\BaseRequest;
+use App\Http\Requests\BaseRequest;
 
 class ModuleRequest extends BaseRequest
 {
@@ -20,7 +20,7 @@ class ModuleRequest extends BaseRequest
         return [
             'id' => 'required|exists:modules,id',
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'status' => 'required',
         ];
     }

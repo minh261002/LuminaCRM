@@ -1,14 +1,3 @@
-@php
-    $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
-
-    $columns = [
-        ['label' => 'Tên module', 'data' => 'name'],
-        ['label' => 'Mô tả', 'data' => 'description'],
-        ['label' => 'Trạng thái', 'data' => 'status'],
-        ['label' => 'Hành động', 'data' => 'action', 'width' => '100px'],
-    ];
-@endphp
-
 @extends('layouts.master')
 
 @section('title', 'Quản lý module hệ thống')

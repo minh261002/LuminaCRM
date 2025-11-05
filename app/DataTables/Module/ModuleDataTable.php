@@ -21,9 +21,9 @@ class ModuleDataTable extends BaseDataTable
     public function setView(): void
     {
         $this->views = [
-            'action' => 'admin.module.datatable.action',
-            'status' => 'admin.module.datatable.status',
-            'description' => 'admin.module.datatable.description',
+            'action' => 'module.datatable.action',
+            'status' => 'module.datatable.status',
+            'description' => 'module.datatable.description',
         ];
     }
 

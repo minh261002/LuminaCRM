@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\Module\ModuleDataTable;
+use App\Enums\ModuleStatus;
 use App\Repositories\Module\ModuleRepositoryInterface;
 use App\Services\Module\ModuleServiceInterface;
 use App\Http\Controllers\Controller;
@@ -23,16 +24,15 @@ class ModuleController extends Controller
 
     public function index(ModuleDataTable $dataTable)
     {
-        return $dataTable->render('module.index');
+        $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
+        return $dataTable->render('module.index', compact('breadcrumbs'));
     }
 
     public function create()
     {
-        $status = [
-            'in_progress' => 'In Progress',
-            'completed' => 'Completed',
-        ];
-        return view('module.store', compact('status'));
+        $status = ModuleStatus::asSelectArray();
+        $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
+        return view('module.create', compact('status', 'breadcrumbs'));
     }
 
     public function store(ModuleRequest $request)
@@ -44,12 +44,10 @@ class ModuleController extends Controller
 
     public function edit(int $id)
     {
-        $status = [
-            'in_progress' => 'In Progress',
-            'completed' => 'Completed',
-        ];
+        $status = ModuleStatus::asSelectArray();
         $module = $this->repository->findOrFail($id);
-        return view('module.store', compact('module', 'status'));
+        $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
+        return view('module.edit', compact('module', 'status', 'breadcrumbs'));
     }
 
     public function update(ModuleRequest $request)
