@@ -19,7 +19,7 @@ abstract class BaseDataTable extends DataTable
      *
      * @var array
      */
-    protected $view;
+    protected $views;
     /**
      * Current Object instance
      *
@@ -124,7 +124,7 @@ abstract class BaseDataTable extends DataTable
         return $this->parameters ?? [
             'autoWidth' => false,
             'language' => [
-                'url' => url('libs/datatables/lang/vi.json')
+                'url' => url('assets/libs/datatables/lang/vi.json')
             ],
         ];
     }
@@ -137,7 +137,7 @@ abstract class BaseDataTable extends DataTable
 
     public function setView()
     {
-        $this->view = [];
+        $this->views = [];
     }
 
     protected function getColumns()

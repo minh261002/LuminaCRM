@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Module\ModuleDataTable;
 use App\Repositories\Module\ModuleRepositoryInterface;
 use App\Services\Module\ModuleServiceInterface;
 use App\Http\Controllers\Controller;
@@ -20,10 +21,9 @@ class ModuleController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(ModuleDataTable $dataTable)
     {
-        $modules = $this->repository->getAll();
-        return view('module.index', compact('modules'));
+        return $dataTable->render('module.index');
     }
 
     public function create()

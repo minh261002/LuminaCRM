@@ -13,6 +13,9 @@
 
 @section('title', 'Quản lý module hệ thống')
 
+@push('styles')
+@endpush
+
 @section('content')
     <div class="">
         <x-page-heading :title="'Quản lý module hệ thống'" :breadcrumbs="$breadcrumbs">
@@ -20,39 +23,55 @@
 
         <div class="page-body">
             <div class="container-xl">
-                <x-card-table :title="'Danh sách module'" :headers="$columns">
-                    <x-slot:actions>
-                        <a href="{{ route(name: 'module.create') }}"
-                            class="btn btn-primary btn-sm d-flex align-items-center gap-2">
-                            <i data-feather="plus" class="icon"></i>
-                            Thêm mới
-                        </a>
-                    </x-slot:actions>
-                    @foreach ($modules as $module)
-                        <tr>
-                            <td>{{ $module->name }}</td>
-                            <td>{{ $module->description }}</td>
-                            <td>
-                                @if ($module->status == 'in_progress')
-                                    <span class="badge bg-warning">In Progress</span>
-                                @else
-                                    <span class="badge bg-success">Completed</span>
-                                @endif
-                            </td>
-                            <td class="d-flex align-items-center gap-2">
-                                <a href="{{ route('module.edit', ['id' => $module->id]) }}"
-                                    class="btn btn-primary btn-sm d-flex align-items-center gap-2">
-                                    <i data-feather="edit" width="20" height="20"></i>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Danh sách module
+                            </h3>
+                            <div class="card-actions">
+                                <a href="{{ route('module.create') }}" class="btn btn-primary">
+                                    <i class="ti ti-plus fs-4 me-1"></i>
+                                    Thêm mới
                                 </a>
-                                <a href="{{ route('module.delete', ['id' => $module->id]) }}"
-                                    class="btn btn-danger btn-sm d-flex align-items-center gap-2">
-                                    <i data-feather="trash" width="20" height="20"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </x-card-table>
+                            </div>
+                        </div>
+
+                        <div class="text-danger" style="padding: 20px 20px 0 20px;">
+                            <p>
+                                <strong>Lưu ý:</strong>
+                                <span>
+                                    Đây là phần chỉ dành riêng cho Nhà phát triển. Các Dev sẽ sử dụng slug ( permission_name
+                                    )
+                                    để lập trình, đóng gói các chức năng để có thể phân quyền. Vui lòng không xóa hoặc điều
+                                    chỉnh các Quyền nếu bạn không phải Dev hoặc không biết về nó để tránh bị Lỗi toàn bộ hệ
+                                    thống.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @include('layouts.partials.toggle-column')
+                            {{ $dataTable->table(['class' => 'table table-bordered table-striped'], true) }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('libs-js')
+    <script src="/assets/js/buttons.server-side.js"></script>
+@endpush
+
+@push('scripts')
+    {{ $dataTable->scripts() }}
+
+    @include('layouts.partials.scripts', [
+        'id_table' => $dataTable->getTableAttribute('id'),
+    ])
+@endpush
