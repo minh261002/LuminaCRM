@@ -8,6 +8,7 @@ use App\Repositories\Role\RoleRepositoryInterface;
 class RoleDataTable extends BaseDataTable
 {
     protected $nameTable = 'roleTable';
+
     protected $repository;
 
     public function __construct(
@@ -16,12 +17,14 @@ class RoleDataTable extends BaseDataTable
         $this->repository = $repository;
         parent::__construct();
     }
+
     public function setView(): void
     {
         $this->views = [
-            'action' => 'admin.role.datatable.action',
+            'action' => 'role.datatable.action',
         ];
     }
+
     public function query()
     {
         return $this->repository->getQueryBuilderOrderBy();
@@ -33,6 +36,7 @@ class RoleDataTable extends BaseDataTable
         $this->columnAllSearch = [0, 1, 2];
 
     }
+
     protected function setCustomColumns(): void
     {
         $this->customColumns = config('datatable_columns.roles', []);

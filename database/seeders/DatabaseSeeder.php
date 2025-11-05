@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@lumina.vn',
             'password'=> Hash::make('password')
         ]);
+
+        $this->call([
+            ModuleSeeder::class,
+        ]);
     }
 }

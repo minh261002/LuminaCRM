@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('authenticate')->group(function(){
@@ -27,6 +28,16 @@ Route::middleware('authenticate')->group(function(){
         Route::get('/{id}/edit', [PermissionController::class, 'edit'])->name('edit');
         Route::put('/{id}', [PermissionController::class, 'update'])->name('update');
         Route::delete('/{id}', [PermissionController::class, 'delete'])->name('delete');
+    });
+
+
+    Route::prefix('roles')->as('roles.')->group(function(){
+        Route::get('/', [RoleController::class, 'index'])->name('index');
+        Route::get('/create', [RoleController::class, 'create'])->name('create');
+        Route::post('/', [RoleController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [RoleController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [RoleController::class, 'update'])->name('update');
+        Route::delete('/{id}', [RoleController::class, 'delete'])->name('delete');
     });
 
 });

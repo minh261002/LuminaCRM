@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <x-form-button :title="'Thao tác'" :backUrl="route('module.index')" :backText="'Quay lại'" :submitText="'Lưu thay đổi'"
+                        <x-form-button :title="'Thao tác'" :backUrl="route('permissions.index')" :backText="'Quay lại'" :submitText="'Lưu thay đổi'"
                             :backIcon="'ti ti-arrow-left'" :submitIcon="'ti ti-device-floppy'" :showBack="true" />
                     </div>
                 </form>

@@ -12,7 +12,9 @@ use App\Repositories\Module\ModuleRepositoryInterface;
 class PermissionController extends Controller
 {
     protected $repository;
+
     protected $moduleRepository;
+
     protected $service;
 
     public function __construct(
