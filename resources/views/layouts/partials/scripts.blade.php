@@ -1,6 +1,5 @@
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery-ui.min.js"></script>
-<script src="/assets/js/tabler.min.js"></script>
 
 <script src="/assets/libs/datatables/jquery.dataTables.min.js"></script>
 
@@ -15,5 +14,6 @@
 
 
 @stack('libs-js')
+<script src="/assets/js/tabler.min.js"></script>
 
 @stack('scripts')

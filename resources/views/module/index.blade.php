@@ -1,5 +1,5 @@
 @php
-    $breadcrumbs = [['name' => 'Bảng điều khiểm', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
+    $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý module']];
 
     $columns = [
         ['label' => 'Tên module', 'data' => 'name'],
@@ -71,7 +71,7 @@
 @push('scripts')
     {{ $dataTable->scripts() }}
 
-    @include('layouts.partials.scripts', [
+    @include('layouts.partials.table', [
         'id_table' => $dataTable->getTableAttribute('id'),
     ])
 @endpush
