@@ -53,6 +53,20 @@ return [
             'printable' => true,
             'addClass' => 'text-center align-middle'
         ],
+        'module_id' => [
+            'title' => 'Module',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle'
+        ],
         'action' => [
             'title' => 'Thao tác',
             'orderable' => false,
