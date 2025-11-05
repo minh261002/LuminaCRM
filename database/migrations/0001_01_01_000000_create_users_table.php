@@ -20,13 +20,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->integer('lat')->nullable();
-            $table->integer('lng')->nullable();
+            $table->decimal('lat', 10, 7)->nullable();
+            $table->decimal('lng', 10, 7)->nullable();
             $table->string('avatar')->default('/assets/img/not-found.jpg');
-            $table->unsignedBigInteger('branch_id')->nullable();
             $table->enum('gender', Gender::getValues())->nullable();
-            $table->string('type_document')->nullable();
-            $table->string('n_document')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
