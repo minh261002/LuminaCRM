@@ -58,9 +58,9 @@
                                         </label>
 
                                         <select name="guard_name" id="guard_name" class="form-control">
-                                            <option value="admin"
-                                                {{ old('guard_name', $role->guard_name) == 'admin' ? 'selected' : '' }}>
-                                                Admin</option>
+                                            <option value="web"
+                                                {{ old('guard_name', $role->guard_name) == 'web' ? 'selected' : '' }}>
+                                                Web</option>
                                         </select>
                                         @error('guard_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -137,41 +137,60 @@
     <script>
         $(document).ready(function() {
             var permissionIdArray = @json($permissionIdArray);
-            if (permissionIdArray.length) {
+
+            // 1) Pre-check permissions passed from server
+            if (Array.isArray(permissionIdArray) && permissionIdArray.length) {
                 permissionIdArray.forEach(function(permissionId) {
                     $('#permissionCheck' + permissionId).prop('checked', true);
                 });
             }
 
+            // 2) Initialize module headers and master on load
+            updateAllModuleHeaders();
+            updateMasterStatus();
+
+            // 3) Master toggle: select/deselect everything
             $('#checkAll').on('change', function() {
                 var isChecked = $(this).is(':checked');
                 $('.module-check-all, .permission-check').prop('checked', isChecked);
             });
 
+            // 4) Module header toggle: affect only its module
             $('.module-check-all').on('change', function() {
                 var moduleId = $(this).data('module-id');
                 var isChecked = $(this).is(':checked');
                 $('.permission-check[data-module-id="' + moduleId + '"]').prop('checked', isChecked);
-
-                updateCheckAllStatus();
+                updateMasterStatus();
             });
 
+            // 5) Individual permission toggle: update its module header and master
             $('.permission-check').on('change', function() {
                 var moduleId = $(this).data('module-id');
-                var allCheckedInModule = $('.permission-check[data-module-id="' + moduleId + '"]')
-                    .length ===
-                    $('.permission-check[data-module-id="' + moduleId + '"]:checked').length;
-
-                $('#moduleCheckAll' + moduleId).prop('checked', allCheckedInModule);
-
-                updateCheckAllStatus();
+                updateModuleHeader(moduleId);
+                updateMasterStatus();
             });
 
-            function updateCheckAllStatus() {
-                var allModulesChecked = $('.module-check-all').length === $('.module-check-all:checked').length;
-                var allPermissionsChecked = $('.permission-check').length === $('.permission-check:checked').length;
+            function updateModuleHeader(moduleId) {
+                var $perms = $('.permission-check[data-module-id="' + moduleId + '"]');
+                var allCheckedInModule = $perms.length > 0 && $perms.length === $perms.filter(':checked').length;
+                $('.module-check-all[data-module-id="' + moduleId + '"]').prop('checked', allCheckedInModule);
+            }
 
-                $('#checkAll').prop('checked', allModulesChecked && allPermissionsChecked);
+            function updateAllModuleHeaders() {
+                $('.module-check-all').each(function() {
+                    var moduleId = $(this).data('module-id');
+                    updateModuleHeader(moduleId);
+                });
+            }
+
+            function updateMasterStatus() {
+                var totalModules = $('.module-check-all').length;
+                var checkedModules = $('.module-check-all:checked').length;
+                var totalPerms = $('.permission-check').length;
+                var checkedPerms = $('.permission-check:checked').length;
+                var allChecked = (totalModules === checkedModules) && (totalPerms === checkedPerms) && totalPerms >
+                    0;
+                $('#checkAll').prop('checked', allChecked);
             }
         });
     </script>

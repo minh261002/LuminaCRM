@@ -42,7 +42,7 @@
                                         </label>
 
                                         <select name="guard_name" id="guard_name" class="form-control">
-                                            <option value="admin">Admin</option>
+                                            <option value="web">Web</option>
                                         </select>
 
                                         @error('guard_name')

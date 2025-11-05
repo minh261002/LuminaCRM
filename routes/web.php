@@ -13,12 +13,20 @@ Route::middleware('authenticate')->group(function(){
 
 
     Route::prefix('modules')->as('module.')->group(function(){
-        Route::get('/', [ModuleController::class, 'index'])->name('index');
-        Route::get('/create', [ModuleController::class, 'create'])->name('create');
-        Route::post('/', [ModuleController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [ModuleController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [ModuleController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ModuleController::class, 'delete'])->name('delete');
+        Route::middleware('permission:viewModule')->group(function(){
+             Route::get('/', [ModuleController::class, 'index'])->name('index');
+        });
+        Route::middleware('permission:createModule')->group(function(){
+            Route::get('/create', [ModuleController::class, 'create'])->name('create');
+            Route::post('/', [ModuleController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editModule')->group(function(){
+            Route::get('/{id}/edit', [ModuleController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [ModuleController::class, 'update'])->name('update');
+        });
+        Route::middleware('permission:deleteModule')->group(function(){
+            Route::delete('/{id}', [ModuleController::class, 'delete'])->name('delete');
+        });
     });
 
     Route::prefix('permissions')->as('permissions.')->group(function(){
