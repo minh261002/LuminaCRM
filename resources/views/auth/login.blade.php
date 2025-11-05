@@ -3,60 +3,50 @@
 @section('title', 'Đăng nhập')
 
 @section('content')
-    <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
-        <div class="mb-4 p-0 text-center">
-            <a href="#" class="auth-logo">
-                <img src="assets/images/logo-dark.png" alt="logo-dark" class="mx-auto" height="28" />
-            </a>
-        </div>
-
-        <div class="auth-title-section mb-3 text-center">
-            <h3 class="text-dark fs-20 fw-medium mb-2">Xin Chào!</h3>
-            <p class="text-dark text-capitalize fs-14 mb-0">
-                Đăng nhập để tiếp tục.
-            </p>
-        </div>
-
-        <div class="pt-0">
-            <form id="loginForm" action="{{ route('authenticate') }}" class="my-4" method="POST" novalidate>
+    <div class="card card-md">
+        <div class="card-body">
+            <h2 class="h2 text-center mb-4">Đăng nhập</h2>
+            <form action="{{ route('authenticate') }}" method="POST" autocomplete="off" id="loginForm">
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}"
-                        autocomplete="email" required>
+
+                <input type="hidden" name="redirect_url" value="{{ request()->get('redirect') }}">
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" autocomplete="off" id="email"
+                        value="{{ old('email') }}" />
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="form-group mb-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <label for="password" class="form-label">Mật khẩu</label>
-                        <a href="{{ route('password.forgot') }}" class="text-muted fs-12">Quên mật khẩu?</a>
-                    </div>
+                <div class="mb-2">
+                    <label class="form-label">
+                        Mật khẩu
+                        <span class="form-label-description">
+                            <a href="{{ route('password.forgot') }}">Quên mật khẩu</a>
+                        </span>
+                    </label>
                     <div class="input-group">
-                        <input id="password" class="form-control" type="password" name="password"
-                            autocomplete="current-password" required>
-                        <button class="input-group-text" type="button" id="showPassword" aria-label="Hiển thị mật khẩu">
-                            <i data-feather="eye" class="noti-icon cursor-pointer"></i>
+                        <input type="password" id="password" name="password" class="form-control">
+                        <button class="btn" type="button" id="showPassword">
+                            <i class="ti ti-eye icon me-0"></i>
                         </button>
                     </div>
                     @error('password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
-                <div class="form-group mb-0 row">
-                    <div class="col-12">
-                        <div class="d-grid">
-                            <button class="btn btn-primary" type="submit" id="loginBtn">
-                                Đăng nhập
-                            </button>
-                        </div>
-                    </div>
+                <div class="mb-2">
+                    <label class="form-check">
+                        <input type="checkbox" class="form-check-input" name="remember" />
+                        <span class="form-check-label">Lưu thông tin</span>
+                    </label>
+                </div>
+                <div type="submit" class="form-footer">
+                    <button type="submit" id="loginBtn" class="btn btn-primary w-100">Đăng nhập</button>
                 </div>
             </form>
-
         </div>
     </div>
 @endsection
@@ -66,7 +56,7 @@
         let isSubmitting = false;
 
         $('#loginForm').on('submit', function(e) {
-            if (isSubmitting) return; // chặn double
+            if (isSubmitting) return;
             e.preventDefault();
 
             isSubmitting = true;
@@ -89,10 +79,7 @@
 
             input.attr('type', isHidden ? 'text' : 'password');
 
-            $(this).html(`<i data-feather="${isHidden ? 'eye-off' : 'eye'}" class="noti-icon cursor-pointer"></i>`);
-            if (window.feather && typeof feather.replace === 'function') {
-                feather.replace();
-            }
+            $(this).html(`<i class="ti ti-eye-off icon me-0"></i>`);
         });
     </script>
 @endpush

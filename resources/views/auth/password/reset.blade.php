@@ -1,42 +1,31 @@
 @extends('layouts.guest')
 
-@section('title', 'Đăng nhập')
+@section('title', 'Đặt lại mật khẩu')
 
 @section('content')
-    <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
-        <div class="mb-4 p-0 text-center">
-            <a href="#" class="auth-logo">
-                <img src="assets/images/logo-dark.png" alt="logo-dark" class="mx-auto" height="28" />
-            </a>
-        </div>
+    <div class="card card-md">
+        <div class="card-body">
+            <h2 class="h2 text-center mb-4">Đặt lại mật khẩu</h2>
 
-        <div class="auth-title-section mb-3 text-center">
-            <h3 class="text-dark fs-20 fw-medium mb-2">Đặt lại mật khẩu</h3>
-            <p class="text-dark text-capitalize fs-14 mb-0">
-                Vui lòng nhập mật khẩu mới của bạn.
-            </p>
-        </div>
-
-        <div class="pt-0">
-            <form id="loginForm" action="{{ route('password.update') }}" class="my-4" method="POST" novalidate>
+            <form action="{{ route('password.update') }}" method="POST" autocomplete="off" id="resetPasswordForm">
                 @csrf
-                <input type="hidden" name="token" value="{{ $token ?? '' }}">
-                <div class="form-group mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" class="form-control" type="email" name="email"
-                        value="{{ old('email', $email ?? '') }}" autocomplete="email" required>
+                <input type="hidden" name="token" value="{{ $token }}">
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{ request()->get('email') }}"
+                        readonly />
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="password" class="form-label">Mật khẩu</label>
+                <div class="mb-3">
+                    <label class="form-label">Mật khẩu</label>
                     <div class="input-group">
-                        <input id="password" class="form-control" type="password" name="password"
-                            autocomplete="current-password" required>
-                        <button class="input-group-text" type="button" id="showPassword" aria-label="Hiển thị mật khẩu">
-                            <i data-feather="eye" class="noti-icon cursor-pointer"></i>
+                        <input type="password" id="password" name="password" class="form-control">
+                        <button class="btn" type="button" id="showPassword">
+                            <i class="ti ti-eye icon me-0"></i>
                         </button>
                     </div>
                     @error('password')
@@ -44,14 +33,13 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="password_confirmation" class="form-label">Mật khẩu</label>
+                <div class="mb-2">
+                    <label class="form-label">Nhập lại mật khẩu</label>
                     <div class="input-group">
-                        <input id="password_confirmation" class="form-control" type="password" name="password_confirmation"
-                            autocomplete="current-password" required>
-                        <button class="input-group-text" type="button" id="showPasswordConfirmation"
-                            aria-label="Hiển thị mật khẩu">
-                            <i data-feather="eye" class="noti-icon cursor-pointer"></i>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                            autocomplete="new-password">
+                        <button class="btn" type="button" id="showPasswordConfirmation">
+                            <i class="ti ti-eye icon me-0"></i>
                         </button>
                     </div>
                     @error('password_confirmation')
@@ -59,20 +47,10 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-0 row">
-                    <div class="col-12">
-                        <div class="d-grid">
-                            <button class="btn btn-primary" type="submit" id="loginBtn">
-                                Đặt lại mật khẩu
-                            </button>
-                        </div>
-                    </div>
+                <div class="form-footer">
+                    <button type="submit" id="loginBtn" class="btn btn-primary w-100">Đặt lại mật khẩu</button>
                 </div>
             </form>
-
-            <a href="{{ route('login') }}">
-                Quay lại đăng nhập
-            </a>
         </div>
     </div>
 @endsection
@@ -81,34 +59,53 @@
     <script>
         let isSubmitting = false;
 
-        $('#loginForm').on('submit', function(e) {
+        $('#resetPasswordForm').on('submit', function(e) {
             if (isSubmitting) return;
             e.preventDefault();
 
-            isSubmitting = true;
+            const pass = $('#password').val();
+            const confirm = $('#password_confirmation').val();
+            if (pass !== confirm) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
 
+            isSubmitting = true;
             const btn = $('#loginBtn');
-            btn.prop('disabled', true)
-                .html(
-                    '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>'
-                );
+            btn.prop('disabled', true).html(
+                '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Đang xử lý...'
+            );
 
             setTimeout(() => {
-                $('#loginForm').off('submit');
-                this.submit();
+                // ĐÚNG ID form
+                $('#resetPasswordForm').off('submit');
+                e.currentTarget.submit();
             }, 500);
         });
 
-        $('#showPassword').on('click', function() {
-            const input = $('#password');
-            const isHidden = input.attr('type') === 'password';
+        // Toggle hiển/ẩn mật khẩu dùng Tabler Icons
+        function togglePassword(inputSelector, triggerSelector) {
+            const input = $(inputSelector);
+            const icon = $(triggerSelector).find('i'); // <i class="ti ...">
 
+            const isHidden = input.attr('type') === 'password';
             input.attr('type', isHidden ? 'text' : 'password');
 
-            $(this).html(`<i data-feather="${isHidden ? 'eye-off' : 'eye'}" class="noti-icon cursor-pointer"></i>`);
-            if (window.feather && typeof feather.replace === 'function') {
-                feather.replace();
+            // Đổi icon: eye <-> eye-off
+            // Tabler Icons dùng class ti ti-eye / ti ti-eye-off
+            if (icon.hasClass('ti-eye')) {
+                icon.removeClass('ti-eye').addClass('ti-eye-off');
+            } else {
+                icon.removeClass('ti-eye-off').addClass('ti-eye');
             }
+        }
+
+        $('#showPassword').on('click', function() {
+            togglePassword('#password', '#showPassword');
+        });
+
+        $('#showPasswordConfirmation').on('click', function() {
+            togglePassword('#password_confirmation', '#showPasswordConfirmation');
         });
     </script>
 @endpush

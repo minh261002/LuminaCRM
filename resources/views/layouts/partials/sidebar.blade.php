@@ -1,438 +1,141 @@
-<div class="app-sidebar-menu">
-    <div class="h-100" data-simplebar>
+@php
+    $adminSidebar = config('admin_sidebar');
+    $user = Auth::user();
+@endphp
 
-        <!--- Sidemenu -->
-        <div id="sidebar-menu">
+<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
+            aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="logo-box">
-                <a href="index.html" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="24">
-                    </span>
-                </a>
-                <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="24">
-                    </span>
-                </a>
-            </div>
-
-            <ul id="side-menu">
-
-                <li class="menu-title">Menu</li>
-
-                <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse">
-                        <i data-feather="home"></i>
-                        <span> Dashboard </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarDashboards">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="index.html" class="tp-link">CRM</a>
-                            </li>
-                            <li>
-                                <a href="analytics.html" class="tp-link">Analytics</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce.html" class="tp-link">eCommerce</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="menu-title">Pages</li>
-
-                <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
-                        <i data-feather="users"></i>
-                        <span> Authentication </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarAuth">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="auth-login.html" class="tp-link">Log In</a>
-                            </li>
-                            <li>
-                                <a href="auth-register.html" class="tp-link">Register</a>
-                            </li>
-                            <li>
-                                <a href="auth-recoverpw.html" class="tp-link">Recover Password</a>
-                            </li>
-                            <li>
-                                <a href="auth-lock-screen.html" class="tp-link">Lock Screen</a>
-                            </li>
-                            <li>
-                                <a href="auth-confirm-mail.html" class="tp-link">Confirm Mail</a>
-                            </li>
-                            <li>
-                                <a href="email-verification.html" class="tp-link">Email Verification</a>
-                            </li>
-                            <li>
-                                <a href="auth-logout.html" class="tp-link">Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
-                        <i data-feather="alert-octagon"></i>
-                        <span> Error Pages </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarError">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="error-404.html" class="tp-link">Error 404</a>
-                            </li>
-                            <li>
-                                <a href="error-500.html" class="tp-link">Error 500</a>
-                            </li>
-                            <li>
-                                <a href="error-503.html" class="tp-link">Error 503</a>
-                            </li>
-                            <li>
-                                <a href="error-429.html" class="tp-link">Error 429</a>
-                            </li>
-                            <li>
-                                <a href="offline-page.html" class="tp-link">Offline Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarExpages" data-bs-toggle="collapse">
-                        <i data-feather="file-text"></i>
-                        <span> Utility </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarExpages">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="pages-starter.html" class="tp-link">Starter</a>
-                            </li>
-                            <li>
-                                <a href="pages-profile.html" class="tp-link">Profile</a>
-                            </li>
-                            <li>
-                                <a href="pages-pricing.html" class="tp-link">Pricing</a>
-                            </li>
-                            <li>
-                                <a href="pages-timeline.html" class="tp-link">Timeline</a>
-                            </li>
-                            <li>
-                                <a href="pages-invoice.html" class="tp-link">Invoice</a>
-                            </li>
-                            <li>
-                                <a href="pages-faqs.html" class="tp-link">FAQs</a>
-                            </li>
-                            <li>
-                                <a href="pages-gallery.html" class="tp-link">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="pages-maintenance.html" class="tp-link">Maintenance</a>
-                            </li>
-                            <li>
-                                <a href="pages-coming-soon.html" class="tp-link">Coming Soon</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="menu-title mt-2">Apps</li>
-
-                <li>
-                    <a href="apps-todolist.html" class="tp-link">
-                        <i data-feather="columns"></i>
-                        <span> Todo List </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="apps-contacts.html" class="tp-link">
-                        <i data-feather="map-pin"></i>
-                        <span> Contacts </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="apps-calendar.html" class="tp-link">
-                        <i data-feather="calendar"></i>
-                        <span> Calendar </span>
-                    </a>
-                </li>
-
-                <li class="menu-title mt-2">General</li>
-
-                <li>
-                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
-                        <i data-feather="package"></i>
-                        <span> Components </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarBaseui">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="ui-accordions.html" class="tp-link">Accordions</a>
-                            </li>
-                            <li>
-                                <a href="ui-alerts.html" class="tp-link">Alerts</a>
-                            </li>
-                            <li>
-                                <a href="ui-badges.html" class="tp-link">Badges</a>
-                            </li>
-                            <li>
-                                <a href="ui-breadcrumb.html" class="tp-link">Breadcrumb</a>
-                            </li>
-                            <li>
-                                <a href="ui-buttons.html" class="tp-link">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="ui-cards.html" class="tp-link">Cards</a>
-                            </li>
-                            <li>
-                                <a href="ui-collapse.html" class="tp-link">Collapse</a>
-                            </li>
-                            <li>
-                                <a href="ui-dropdowns.html" class="tp-link">Dropdowns</a>
-                            </li>
-                            <li>
-                                <a href="ui-video.html" class="tp-link">Embed Video</a>
-                            </li>
-                            <li>
-                                <a href="ui-grid.html" class="tp-link">Grid</a>
-                            </li>
-                            <li>
-                                <a href="ui-images.html" class="tp-link">Images</a>
-                            </li>
-                            <li>
-                                <a href="ui-list.html" class="tp-link">List Group</a>
-                            </li>
-                            <li>
-                                <a href="ui-modals.html" class="tp-link">Modals</a>
-                            </li>
-                            <li>
-                                <a href="ui-placeholders.html" class="tp-link">Placeholders</a>
-                            </li>
-                            <li>
-                                <a href="ui-pagination.html" class="tp-link">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="ui-popovers.html" class="tp-link">Popovers</a>
-                            </li>
-                            <li>
-                                <a href="ui-progress.html" class="tp-link">Progress</a>
-                            </li>
-                            <li>
-                                <a href="ui-scrollspy.html" class="tp-link">Scrollspy</a>
-                            </li>
-                            <li>
-                                <a href="ui-spinners.html" class="tp-link">Spinners</a>
-                            </li>
-                            <li>
-                                <a href="ui-tabs.html" class="tp-link">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="ui-tooltips.html" class="tp-link">Tooltips</a>
-                            </li>
-                            <li>
-                                <a href="ui-typography.html" class="tp-link">Typography</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="widgets.html" class="tp-link">
-                        <i data-feather="aperture"></i>
-                        <span> Widgets </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
-                        <i data-feather="cpu"></i>
-                        <span> Extended UI </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarAdvancedUI">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="extended-carousel.html" class="tp-link">Carousel</a>
-                            </li>
-                            <li>
-                                <a href="extended-notifications.html" class="tp-link">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="extended-offcanvas.html" class="tp-link">Offcanvas</a>
-                            </li>
-                            <li>
-                                <a href="extended-range-slider.html" class="tp-link">Range Slider</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarIcons" data-bs-toggle="collapse">
-                        <i data-feather="award"></i>
-                        <span> Icons </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarIcons">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="icons-feather.html" class="tp-link">Feather Icons</a>
-                            </li>
-                            <li>
-                                <a href="icons-mdi.html" class="tp-link">Material Design Icons</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarForms" data-bs-toggle="collapse">
-                        <i data-feather="briefcase"></i>
-                        <span> Forms </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarForms">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="forms-elements.html" class="tp-link">General Elements</a>
-                            </li>
-                            <li>
-                                <a href="forms-validation.html" class="tp-link">Validation</a>
-                            </li>
-                            <li>
-                                <a href="forms-quilljs.html" class="tp-link">Quilljs Editor</a>
-                            </li>
-                            <li>
-                                <a href="forms-pickers.html" class="tp-link">Picker</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarTables" data-bs-toggle="collapse">
-                        <i data-feather="table"></i>
-                        <span> Tables </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarTables">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="tables-basic.html" class="tp-link">Basic Tables</a>
-                            </li>
-                            <li>
-                                <a href="tables-datatables.html" class="tp-link">Data Tables</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarCharts" data-bs-toggle="collapse">
-                        <i data-feather="pie-chart"></i>
-                        <span> Apex Charts </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarCharts">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href='charts-line.html' class="tp-link">Line</a>
-                            </li>
-                            <li>
-                                <a href='charts-area.html' class="tp-link">Area</a>
-                            </li>
-                            <li>
-                                <a href='charts-column.html' class="tp-link">Column</a>
-                            </li>
-                            <li>
-                                <a href='charts-bar.html' class="tp-link">Bar</a>
-                            </li>
-                            <li>
-                                <a href='charts-mixed.html' class="tp-link">Mixed</a>
-                            </li>
-                            <li>
-                                <a href='charts-timeline.html' class="tp-link">Timeline</a>
-                            </li>
-                            <li>
-                                <a href='charts-rangearea.html' class="tp-link">Range Area</a>
-                            </li>
-                            <li>
-                                <a href='charts-funnel.html' class="tp-link">Funnel</a>
-                            </li>
-                            <li>
-                                <a href='charts-candlestick.html' class="tp-link">Candlestick</a>
-                            </li>
-                            <li>
-                                <a href='charts-boxplot.html' class="tp-link">Boxplot</a>
-                            </li>
-                            <li>
-                                <a href='charts-bubble.html' class="tp-link">Bubble</a>
-                            </li>
-                            <li>
-                                <a href='charts-scatter.html' class="tp-link">Scatter</a>
-                            </li>
-                            <li>
-                                <a href='charts-heatmap.html' class="tp-link">Heatmap</a>
-                            </li>
-                            <li>
-                                <a href='charts-treemap.html' class="tp-link">Treemap</a>
-                            </li>
-                            <li>
-                                <a href='charts-pie.html' class="tp-link">Pie</a>
-                            </li>
-                            <li>
-                                <a href='charts-radialbar.html' class="tp-link">Radialbar</a>
-                            </li>
-                            <li>
-                                <a href='charts-radar.html' class="tp-link">Radar</a>
-                            </li>
-                            <li>
-                                <a href='charts-polararea.html' class="tp-link">Polar</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarMaps" data-bs-toggle="collapse">
-                        <i data-feather="map"></i>
-                        <span> Maps </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarMaps">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="maps-google.html" class="tp-link">Google Maps</a>
-                            </li>
-                            <li>
-                                <a href="maps-vector.html" class="tp-link">Vector Maps</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-            </ul>
-
+        <div class="navbar-brand navbar-brand-autodark">
+            <a href="." aria-label="Tabler"><svg xmlns="http://www.w3.org/2000/svg" width="110" height="32"
+                    viewBox="0 0 232 68" class="navbar-brand-image">
+                    <path
+                        d="M64.6 16.2C63 9.9 58.1 5 51.8 3.4 40 1.5 28 1.5 16.2 3.4 9.9 5 5 9.9 3.4 16.2 1.5 28 1.5 40 3.4 51.8 5 58.1 9.9 63 16.2 64.6c11.8 1.9 23.8 1.9 35.6 0C58.1 63 63 58.1 64.6 51.8c1.9-11.8 1.9-23.8 0-35.6zM33.3 36.3c-2.8 4.4-6.6 8.2-11.1 11-1.5.9-3.3.9-4.8.1s-2.4-2.3-2.5-4c0-1.7.9-3.3 2.4-4.1 2.3-1.4 4.4-3.2 6.1-5.3-1.8-2.1-3.8-3.8-6.1-5.3-2.3-1.3-3-4.2-1.7-6.4s4.3-2.9 6.5-1.6c4.5 2.8 8.2 6.5 11.1 10.9 1 1.4 1 3.3.1 4.7zM49.2 46H37.8c-2.1 0-3.8-1-3.8-3s1.7-3 3.8-3h11.4c2.1 0 3.8 1 3.8 3s-1.7 3-3.8 3z"
+                        fill="#066fd1" style="fill: var(--tblr-primary, #066fd1)" />
+                    <path
+                        d="M105.8 46.1c.4 0 .9.2 1.2.6s.6 1 .6 1.7c0 .9-.5 1.6-1.4 2.2s-2 .9-3.2.9c-2 0-3.7-.4-5-1.3s-2-2.6-2-5.4V31.6h-2.2c-.8 0-1.4-.3-1.9-.8s-.9-1.1-.9-1.9c0-.7.3-1.4.8-1.8s1.2-.7 1.9-.7h2.2v-3.1c0-.8.3-1.5.8-2.1s1.3-.8 2.1-.8 1.5.3 2 .8.8 1.3.8 2.1v3.1h3.4c.8 0 1.4.3 1.9.8s.8 1.2.8 1.9-.3 1.4-.8 1.8-1.2.7-1.9.7h-3.4v13c0 .7.2 1.2.5 1.5s.8.5 1.4.5c.3 0 .6-.1 1.1-.2.5-.2.8-.3 1.2-.3zm28-20.7c.8 0 1.5.3 2.1.8.5.5.8 1.2.8 2.1v20.3c0 .8-.3 1.5-.8 2.1-.5.6-1.2.8-2.1.8s-1.5-.3-2-.8-.8-1.2-.8-2.1c-.8.9-1.9 1.7-3.2 2.4-1.3.7-2.8 1-4.3 1-2.2 0-4.2-.6-6-1.7-1.8-1.1-3.2-2.7-4.2-4.7s-1.6-4.3-1.6-6.9c0-2.6.5-4.9 1.5-6.9s2.4-3.6 4.2-4.8c1.8-1.1 3.7-1.7 5.9-1.7 1.5 0 3 .3 4.3.8 1.3.6 2.5 1.3 3.4 2.1 0-.8.3-1.5.8-2.1.5-.5 1.2-.7 2-.7zm-9.7 21.3c2.1 0 3.8-.8 5.1-2.3s2-3.4 2-5.7-.7-4.2-2-5.8c-1.3-1.5-3-2.3-5.1-2.3-2 0-3.7.8-5 2.3-1.3 1.5-2 3.5-2 5.8s.6 4.2 1.9 5.7 3 2.3 5.1 2.3zm32.1-21.3c2.2 0 4.2.6 6 1.7 1.8 1.1 3.2 2.7 4.2 4.7s1.6 4.3 1.6 6.9-.5 4.9-1.5 6.9-2.4 3.6-4.2 4.8c-1.8 1.1-3.7 1.7-5.9 1.7-1.5 0-3-.3-4.3-.9s-2.5-1.4-3.4-2.3v.3c0 .8-.3 1.5-.8 2.1-.5.6-1.2.8-2.1.8s-1.5-.3-2.1-.8c-.5-.5-.8-1.2-.8-2.1V18.9c0-.8.3-1.5.8-2.1.5-.6 1.2-.8 2.1-.8s1.5.3 2.1.8c.5.6.8 1.3.8 2.1v10c.8-1 1.8-1.8 3.2-2.5 1.3-.7 2.8-1 4.3-1zm-.7 21.3c2 0 3.7-.8 5-2.3s2-3.5 2-5.8-.6-4.2-1.9-5.7-3-2.3-5.1-2.3-3.8.8-5.1 2.3-2 3.4-2 5.7.7 4.2 2 5.8c1.3 1.6 3 2.3 5.1 2.3zm23.6 1.9c0 .8-.3 1.5-.8 2.1s-1.3.8-2.1.8-1.5-.3-2-.8-.8-1.3-.8-2.1V18.9c0-.8.3-1.5.8-2.1s1.3-.8 2.1-.8 1.5.3 2 .8.8 1.3.8 2.1v29.7zm29.3-10.5c0 .8-.3 1.4-.9 1.9-.6.5-1.2.7-2 .7h-15.8c.4 1.9 1.3 3.4 2.6 4.4 1.4 1.1 2.9 1.6 4.7 1.6 1.3 0 2.3-.1 3.1-.4.7-.2 1.3-.5 1.8-.8.4-.3.7-.5.9-.6.6-.3 1.1-.4 1.6-.4.7 0 1.2.2 1.7.7s.7 1 .7 1.7c0 .9-.4 1.6-1.3 2.4-.9.7-2.1 1.4-3.6 1.9s-3 .8-4.6.8c-2.7 0-5-.6-7-1.7s-3.5-2.7-4.6-4.6-1.6-4.2-1.6-6.6c0-2.8.6-5.2 1.7-7.2s2.7-3.7 4.6-4.8 3.9-1.7 6-1.7 4.1.6 6 1.7 3.4 2.7 4.5 4.7c.9 1.9 1.5 4.1 1.5 6.3zm-12.2-7.5c-3.7 0-5.9 1.7-6.6 5.2h12.6v-.3c-.1-1.3-.8-2.5-2-3.5s-2.5-1.4-4-1.4zm30.3-5.2c1 0 1.8.3 2.4.8.7.5 1 1.2 1 1.9 0 1-.3 1.7-.8 2.2-.5.5-1.1.8-1.8.7-.5 0-1-.1-1.6-.3-.2-.1-.4-.1-.6-.2-.4-.1-.7-.1-1.1-.1-.8 0-1.6.3-2.4.8s-1.4 1.3-1.9 2.3-.7 2.3-.7 3.7v11.4c0 .8-.3 1.5-.8 2.1-.5.6-1.2.8-2.1.8s-1.5-.3-2.1-.8c-.5-.6-.8-1.3-.8-2.1V28.8c0-.8.3-1.5.8-2.1.5-.6 1.2-.8 2.1-.8s1.5.3 2.1.8c.5.6.8 1.3.8 2.1v.6c.7-1.3 1.8-2.3 3.2-3 1.3-.7 2.8-1 4.3-1z"
+                        fill-rule="evenodd" clip-rule="evenodd" fill="#4a4a4a" />
+                </svg>
+            </a>
         </div>
-        <!-- End Sidebar -->
 
-        <div class="clearfix"></div>
+        <div class="navbar-nav flex-row d-lg-none">
+            <div class="nav-item d-none d-lg-flex me-3">
+                <div class="btn-list">
+                    <a href="https://github.com/tabler/tabler" class="btn btn-5" target="_blank" rel="noreferrer">
+                        <i class="ti ti-brand-github"></i>
+                        Source code
+                    </a>
+                    <a href="https://github.com/sponsors/codecalm" class="btn btn-6" target="_blank" rel="noreferrer">
+                        <i class="ti ti-heart"></i>
+                        Sponsor
+                    </a>
+                </div>
+            </div>
+            <div class="d-none d-lg-flex">
+                <div class="nav-item">
+                    <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class='ti ti-moon'></i>
+                    </a>
+                    <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class="ti ti-sun"></i>
+                    </a>
+                </div>
+                <div class="nav-item dropdown d-none d-md-flex">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                        aria-label="Show notifications" data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="ti ti-bell"></i>
+                        <span class="badge bg-red"></span>
+                    </a>
+                </div>
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                        aria-label="Show app menu" data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="ti ti-apps"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown"
+                    aria-label="Open user menu">
+                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)">
+                    </span>
+                    <div class="d-none d-xl-block ps-2">
+                        <div>Paweł Kuna</div>
+                        <div class="mt-1 small text-secondary">UI Designer</div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="#" class="dropdown-item">Status</a>
+                    <a href="./profile.html" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Feedback</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="./settings.html" class="dropdown-item">Settings</a>
+                    <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                </div>
+            </div>
+        </div>
 
+        <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+                <li class="nav-item {{ setSidebarActive(['dashboard.*']) }}">
+                    <a class="nav-link  {{ setSidebarShow(['dashboard.*']) }}" href="{{ route('dashboard') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-home-2 fs-2"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Dashboard
+                        </span>
+                    </a>
+                </li>
+
+                @foreach ($adminSidebar as $menu)
+                    @php
+                        $hasParentAccess =
+                            $user &&
+                            ($user->checkPermissions($menu['permission']) || in_array('Dev', $menu['permission']));
+                    @endphp
+                    @if ($hasParentAccess)
+                        <li class="nav-item dropdown {{ setSidebarActive([$menu['active']]) }}">
+                            <a class="nav-link dropdown-toggle {{ setSidebarShow($menu['show']) }}" href="#"
+                                data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
+                                aria-expanded="true">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="{{ $menu['icon'] }}"></i>
+                                </span>
+                                <span class="nav-link-title">{{ $menu['title'] }}</span>
+                            </a>
+
+                            @if (!empty($menu['children']))
+                                @php
+                                    $canViewChildren = $hasParentAccess || in_array('Root', $menu['permission']);
+                                @endphp
+                                @if ($canViewChildren)
+                                    <div class="dropdown-menu {{ setSidebarShow($menu['show']) }}">
+                                        <div class="dropdown-menu-columns">
+                                            @foreach ($menu['children'] as $child)
+                                                @if (isset($child['permission']) && !$user?->can($child['permission']))
+                                                    @continue
+                                                @endif
+                                                <a class="dropdown-item" href="{{ route($child['route']) }}">
+                                                    <i class="{{ $child['icon'] }} me-2"></i>
+                                                    {{ $child['title'] }}
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
     </div>
-</div>
+</aside>

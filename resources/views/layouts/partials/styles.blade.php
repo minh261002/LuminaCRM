@@ -1,0 +1,35 @@
+<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+
+{{-- css --}}
+<link href="/assets/css/tabler.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-flags.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-socials.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-payments.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-vendors.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-marketing.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-themes.min.css" rel="stylesheet" />
+<link href="/assets/css/tabler-props.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.structure.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.theme.min.css" rel="stylesheet" />
+<link href="/assets/css/custom.css" rel="stylesheet" />
+
+{{-- icons --}}
+<link href="/assets/icons/tabler-icons.min.css" rel="stylesheet" />
+<link href="/assets/icons/tabler-icons-filled.min.css" rel="stylesheet" />
+<link href="/assets/icons/tabler-icons-outline.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="/assets/libs/datatables/plugins/bs5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="/assets/libs/datatables/plugins/buttons/css/buttons.bootstrap5.min.css">
+<link rel="stylesheet" href="/assets/libs/datatables/plugins/responsive/css/responsive.bootstrap5.min.css">
+
+<style>
+    @import url("https://rsms.me/inter/inter.css");
+
+    .cursor-pointer {
+        cursor: pointer !important;
+    }
+</style>
+
+@stack('styles')
