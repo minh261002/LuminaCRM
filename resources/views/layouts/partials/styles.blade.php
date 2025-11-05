@@ -10,6 +10,9 @@
 <link href="/assets/css/tabler-marketing.min.css" rel="stylesheet" />
 <link href="/assets/css/tabler-themes.min.css" rel="stylesheet" />
 <link href="/assets/css/tabler-props.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.structure.min.css" rel="stylesheet" />
+<link href="/assets/css/jquery-ui.theme.min.css" rel="stylesheet" />
 
 {{-- icons --}}
 
