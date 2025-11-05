@@ -36,7 +36,9 @@
                     <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->avatar }})"> </span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ Auth::user()->name }}</div>
-                        <div class="mt-1 small text-secondary">{{ Auth::user()->email }}</div>
+                        <div class="mt-1 small text-secondary">
+                            {{ Auth::user()->role[0]->title }}
+                        </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

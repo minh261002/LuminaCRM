@@ -102,7 +102,7 @@
                             ($user->checkPermissions($menu['permission']) || in_array('Dev', $menu['permission']));
                     @endphp
                     @if ($hasParentAccess)
-                        <li class="nav-item dropdown {{ setSidebarActive([$menu['active']]) }}">
+                        <li class="nav-item dropdown {{ setSidebarActive($menu['active']) }}">
                             <a class="nav-link dropdown-toggle {{ setSidebarShow($menu['show']) }}" href="#"
                                 data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
                                 aria-expanded="true">
