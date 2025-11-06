@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserAccessController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,9 @@ Route::middleware('authenticate')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('profile', [UserAccessController::class, 'index'])->name('profile');
+    Route::put('profile/update-password', [UserAccessController::class, 'updatePassword'])->name('profile.update-password');
+    Route::get('change-password', [UserAccessController::class, 'changePassword'])->name('profile.change-password');
 
     Route::prefix('modules')->as('module.')->group(function(){
         Route::middleware('permission:viewModule')->group(function(){

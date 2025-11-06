@@ -42,6 +42,9 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="{{ route('profile') }}" class="dropdown-item">Thông tin cá nhân</a>
+                    <a href="{{ route('profile.change-password') }}" class="dropdown-item">Đổi mật khẩu</a>
+                    <div class="dropdown-divider"></div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item">Đăng xuất</button>
