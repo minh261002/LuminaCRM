@@ -5,6 +5,7 @@ namespace App\DataTables\User;
 use App\DataTables\BaseDataTable;
 use App\Repositories\Role\RoleRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class UserDataTable extends BaseDataTable
 {
@@ -34,7 +35,8 @@ class UserDataTable extends BaseDataTable
 
     public function query()
     {
-        return $this->repository->getQueryBuilderOrderBy();
+        $user = Auth::user();
+        return $this->repository->getQueryBuilderOrderBy()->where('id', '!=', $user->id);
     }
 
     public function setColumnSearch(): void
