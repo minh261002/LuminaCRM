@@ -20,6 +20,12 @@ class AuthController extends Controller
         $redirectUrl = $request->input('redirect_url');
 
         if (Auth::attempt($credentials, $remember)) {
+            $user = Auth::user();
+            if (!$user->is_active) {
+                Auth::logout();
+                notyf()->error('Tài khoản của bạn đã bị khóa');
+                return back()->onlyInput('email');
+            }
             $request->session()->regenerate();
 
             notyf()->success('Đăng nhập thành công');

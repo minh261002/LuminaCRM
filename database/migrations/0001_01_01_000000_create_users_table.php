@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('code')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->decimal('lng', 10, 7)->nullable();
             $table->string('avatar')->default('/assets/img/not-found.jpg');
             $table->enum('gender', Gender::getValues())->nullable();
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -44,7 +44,8 @@ class User extends Authenticatable implements CanResetPasswordContract
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'gender' => Gender::class
+            'gender' => Gender::class,
+            'is_active' => 'boolean'
         ];
     }
 

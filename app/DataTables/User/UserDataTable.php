@@ -3,17 +3,21 @@
 namespace App\DataTables\User;
 
 use App\DataTables\BaseDataTable;
+use App\Repositories\Role\RoleRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
 
 class UserDataTable extends BaseDataTable
 {
     protected $nameTable = 'userTable';
     protected $repository;
+    protected $roleRepository;
 
     public function __construct(
-        UserRepositoryInterface $repository
+        UserRepositoryInterface $repository,
+        RoleRepositoryInterface $roleRepository
     ) {
         $this->repository = $repository;
+        $this->roleRepository = $roleRepository;
         parent::__construct();
     }
 
@@ -21,8 +25,10 @@ class UserDataTable extends BaseDataTable
     {
         $this->views = [
             'action' => 'user.datatable.action',
-            'image' => 'user.datatable.image',
+            'code' => 'user.datatable.code',
+            'name' => 'user.datatable.name',
             'role' => 'user.datatable.role',
+            'is_active' => 'user.datatable.is_active',
         ];
     }
 
@@ -33,8 +39,21 @@ class UserDataTable extends BaseDataTable
 
     public function setColumnSearch(): void
     {
-        $this->columnAllSearch = [1, 2, 3, 4, 5, 6];
-        $this->columnSearchDate = [6];
+        $this->columnAllSearch = [0, 1, 2, 3, 4];
+        $this->columnSearchDate = [4];
+        $this->columnSearchSelect = [
+            [
+                'column' => 2,
+                'data' => $this->roleRepository->getAll()->pluck('title', 'id')->toArray()
+            ],
+            [
+                'column' => 3,
+                'data' => [
+                    true => 'Hoạt động',
+                    false => 'Không hoạt động',
+                ]
+            ]
+        ];
     }
 
     protected function setCustomColumns(): void
@@ -46,11 +65,19 @@ class UserDataTable extends BaseDataTable
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
-            'image' => $this->views['image'],
-            'status' => $this->views['status'],
-            'created_at' => '{{format_datetime($created_at)}}',
-            'login_type' => $this->views['login_type'],
-            'role' => $this->views['role'],
+            'code' =>function ($user) {
+                return view('user.datatable.code', compact('user'))->render();
+            },
+            'info' => function ($user) {
+                return view('user.datatable.info', compact('user'))->render();
+            },
+            'role' => function ($user) {
+                return view('user.datatable.role', compact('user'))->render();
+            },
+            'is_active' => function ($user) {
+                return view('user.datatable.is_active', compact('user'))->render();
+            },
+            'created_at' => '{{formatDate($created_at)}}',
         ];
     }
 
@@ -65,7 +92,10 @@ class UserDataTable extends BaseDataTable
     {
         $this->customRawColumns = [
             'action',
-            'image',
+            'code',
+            'info',
+            'role',
+            'is_active',
             'status',
         ];
     }
@@ -73,7 +103,19 @@ class UserDataTable extends BaseDataTable
     public function setCustomFilterColumns(): void
     {
         $this->customFilterColumns = [
-            //
+            'role' => function ($query, $keyword) {
+                $query->whereHas('role', function ($query) use ($keyword) {
+                    $query->where('id', 'like', '%' . $keyword . '%');
+                });
+            },
+            'code' => function($query, $keyword) {
+                $query->where('users.code', 'like', '%' . $keyword . '%')
+                ->orWhere('users.name', 'like', '%' . $keyword . '%');
+            },
+            'info' => function($query, $keyword) {
+                $query->where('users.email', 'like', '%' . $keyword . '%')
+                ->orWhere('users.phone', 'like', '%' . $keyword . '%');
+            },
         ];
     }
 }

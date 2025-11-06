@@ -1,6 +1,50 @@
 <?php
 
 return [
+    'users' => [
+        'code' => [
+            'title' => 'Nhân viên',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'info' => [
+            'title' => 'Thông tin',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'role' => [
+            'title' => 'Vai trò',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
     'roles' => [
         'title' => [
             'title' => 'Tiêu đề',
