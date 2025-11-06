@@ -17,6 +17,16 @@ Route::middleware('authenticate')->group(function(){
     Route::put('profile/update-password', [UserAccessController::class, 'updatePassword'])->name('profile.update-password');
     Route::get('change-password', [UserAccessController::class, 'changePassword'])->name('profile.change-password');
 
+    // Two Factor Authentication
+    Route::prefix('two-factor')->as('two-factor.')->group(function(){
+        Route::get('/', [\App\Http\Controllers\TwoFactorController::class, 'index'])->name('index');
+        Route::post('/verify', [\App\Http\Controllers\TwoFactorController::class, 'verify'])->name('verify');
+        Route::get('/recovery', [\App\Http\Controllers\TwoFactorController::class, 'recovery'])->name('recovery');
+        Route::get('/recovery-codes', [\App\Http\Controllers\TwoFactorController::class, 'showRecoveryCodes'])->name('show-recovery');
+        Route::post('/regenerate-recovery', [\App\Http\Controllers\TwoFactorController::class, 'regenerateRecoveryCodes'])->name('regenerate-recovery');
+        Route::post('/disable', [\App\Http\Controllers\TwoFactorController::class, 'disable'])->name('disable');
+    });
+
     Route::prefix('modules')->as('module.')->group(function(){
         Route::middleware('permission:viewModule')->group(function(){
              Route::get('/', [ModuleController::class, 'index'])->name('index');
@@ -93,6 +103,10 @@ Route::middleware('authenticate')->group(function(){
 Route::middleware('logged_in')->group(function(){
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
+
+    // Two Factor Login
+    Route::get('two-factor/login', [AuthController::class, 'showTwoFactorLogin'])->name('two-factor.login');
+    Route::post('two-factor/verify-login', [AuthController::class, 'verifyTwoFactorLogin'])->name('two-factor.verify-login');
 
     Route::get('password/forgot', [AuthController::class, 'forgotPassword'])->name('password.forgot');
     Route::post('password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');

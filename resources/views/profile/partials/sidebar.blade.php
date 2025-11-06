@@ -13,5 +13,11 @@
         ">
             Đổi mật khẩu
         </a>
+        <a href="{{ route('two-factor.index') }}"
+            class="list-group-item list-group-item-action d-flex align-items-center
+        {{ request()->is('two-factor*') ? 'active' : '' }}
+        ">
+            Xác thực 2 lớp
+        </a>
     </div>
 </div>
