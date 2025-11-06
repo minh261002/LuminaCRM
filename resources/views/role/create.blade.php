@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Quản lý module hệ thống')
+@section('title', 'Thêm vai trò mới')
 
 @section('content')
     <div class="container-fluid">
-        <x-page-heading :title="'Quản lý module hệ thống'" :breadcrumbs="$breadcrumbs">
+        <x-page-heading :title="'Quản lý vai trò'" :breadcrumbs="$breadcrumbs">
         </x-page-heading>
 
         <div class="page-body">
@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Thông tin module
+                                    Thông tin vai trò
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <x-form-button :title="'Thao tác'" :backUrl="route('module.index')" :backText="'Quay lại'" :submitText="'Thêm mới'"
+                        <x-form-button :title="'Thao tác'" :backUrl="route('roles.index')" :backText="'Quay lại'" :submitText="'Thêm mới'"
                             :backIcon="'ti ti-arrow-left'" :submitIcon="'ti ti-device-floppy'" :showBack="true" />
                     </div>
                 </form>

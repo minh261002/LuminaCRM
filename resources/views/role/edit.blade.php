@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Quản lý vai trò')
+@section('title', 'Chỉnh sửa thông tin vai trò')
 
 @push('styles')
 @endpush

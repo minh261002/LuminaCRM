@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-//
+use PragmaRX\Google2FAQRCode\Google2FA;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthController extends Controller
 {
@@ -20,6 +21,25 @@ class AuthController extends Controller
         $redirectUrl = $request->input('redirect_url');
 
         if (Auth::attempt($credentials, $remember)) {
+            $user = Auth::user();
+            if (!$user->is_active) {
+                Auth::logout();
+                notyf()->error('Tài khoản của bạn đã bị khóa');
+                return back()->onlyInput('email');
+            }
+
+            // Check if 2FA is enabled
+            if ($user->hasTwoFactorEnabled()) {
+                // Store user ID in session for 2FA verification
+                $request->session()->put('login.id', $user->id);
+                $request->session()->put('login.remember', $remember);
+                $request->session()->put('login.redirect_url', $redirectUrl);
+
+                Auth::logout();
+
+                return redirect()->route('two-factor.login');
+            }
+
             $request->session()->regenerate();
 
             notyf()->success('Đăng nhập thành công');
@@ -28,6 +48,74 @@ class AuthController extends Controller
 
         notyf()->error('Thông tin đăng nhập không chính xác');
         return back()->onlyInput('email');
+    }
+
+    /**
+     * Show 2FA login form
+     */
+    public function showTwoFactorLogin()
+    {
+        if (!session()->has('login.id')) {
+            return redirect()->route('login');
+        }
+
+        return view('auth.two-factor-login');
+    }
+
+    /**
+     * Verify 2FA code during login
+     */
+    public function verifyTwoFactorLogin(Request $request)
+    {
+        $request->validate([
+            'code' => ['required', 'string', 'size:6']
+        ], [
+            'code.required' => 'Mã xác thực là bắt buộc',
+            'code.size' => 'Mã xác thực phải có 6 chữ số'
+        ]);
+
+        if (!session()->has('login.id')) {
+            return redirect()->route('login');
+        }
+
+        $userId = session()->get('login.id');
+        $user = \App\Models\User::find($userId);
+
+        if (!$user || !$user->hasTwoFactorEnabled()) {
+            session()->forget(['login.id', 'login.remember', 'login.redirect_url']);
+            return redirect()->route('login');
+        }
+
+        $secret = decrypt($user->two_factor_secret);
+        $google2fa = new Google2FA();
+        $valid = $google2fa->verifyKey($secret, $request->code, 2); // 2 = 60 seconds tolerance
+
+        if (!$valid) {
+            $recoveryCodes = $user->two_factor_recovery_codes
+                ? json_decode(decrypt($user->two_factor_recovery_codes), true)
+                : [];
+
+            if (in_array(strtoupper($request->code), $recoveryCodes)) {
+                $recoveryCodes = array_values(array_diff($recoveryCodes, [strtoupper($request->code)]));
+                $user->two_factor_recovery_codes = encrypt(json_encode($recoveryCodes));
+                $user->save();
+                $valid = true;
+            }
+        }
+
+        if (!$valid) {
+            notyf()->error('Mã xác thực không hợp lệ');
+            return back()->withInput();
+        }
+
+        Auth::login($user, session()->get('login.remember'));
+        $redirectUrl = session()->get('login.redirect_url');
+
+        session()->forget(['login.id', 'login.remember', 'login.redirect_url']);
+        $request->session()->regenerate();
+
+        notyf()->success('Đăng nhập thành công');
+        return redirect()->intended($redirectUrl ?? route('dashboard'));
     }
 
 

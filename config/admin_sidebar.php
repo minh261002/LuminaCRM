@@ -2,6 +2,27 @@
 
 return [
     [
+        'active' => ['users.*'],
+        'show' => ['users.*'],
+        'title' => 'Nhân viên',
+        'icon' => 'ti ti-user fs-2',
+        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+        'children' => [
+            [
+                'title' => 'Thêm mới',
+                'route' => 'users.create',
+                'icon' => 'ti ti-plus fs-3 me-2',
+                'permission' => 'createUser'
+            ],
+            [
+                'title' => 'Danh sách',
+                'route' => 'users.index',
+                'icon' => 'ti ti-list fs-3 me-2',
+                'permission' => 'viewUser'
+            ]
+        ]
+    ],
+    [
         'active' => ['roles.*'],
         'show' => ['roles.*'],
         'title' => 'Vai trò',

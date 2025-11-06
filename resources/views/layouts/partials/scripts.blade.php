@@ -20,7 +20,6 @@
 <script>
     (function($) {
         $(function() {
-            // tránh bind trùng lặp
             $(document).off('click.appDelete', '.btn-delete');
             $(document).on('click.appDelete', '.btn-delete', function(e) {
                 e.preventDefault();
@@ -86,4 +85,23 @@
     })(window.jQuery);
 </script>
 
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&libraries=places&language=vi&callback=initMaps">
+</script>
+<script>
+    function initMaps() {
+        try {
+            if (typeof initMap === 'function') {
+                console.log("Calling initMap");
+                initMap();
+            } else {
+                console.error("initMap is not defined");
+            }
+
+        } catch (error) {
+            console.error("Error in initMaps:", error);
+            window.location.reload();
+        }
+    }
+</script>
 @stack('scripts')

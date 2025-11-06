@@ -64,28 +64,30 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)">
+                    <span class="avatar avatar-sm" style="background-image: url({{ $user->avatar }})">
                     </span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Paweł Kuna</div>
-                        <div class="mt-1 small text-secondary">UI Designer</div>
+                        <div>
+                            {{ $user->name }}
+                        </div>
+                        <div class="mt-1 small text-secondary">
+                            {{ $user->role[0]->title }}
+                        </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Status</a>
-                    <a href="./profile.html" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Feedback</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="./settings.html" class="dropdown-item">Settings</a>
-                    <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Đăng xuất</button>
+                    </form>
                 </div>
             </div>
         </div>
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
-                <li class="nav-item {{ setSidebarActive(['dashboard.*']) }}">
-                    <a class="nav-link  {{ setSidebarShow(['dashboard.*']) }}" href="{{ route('dashboard') }}">
+                <li class="nav-item {{ setSidebarActive(['dashboard']) }}">
+                    <a class="nav-link  {{ setSidebarShow(['dashboard']) }}" href="{{ route('dashboard') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <i class="ti ti-home-2 fs-2"></i>
                         </span>
@@ -102,7 +104,7 @@
                             ($user->checkPermissions($menu['permission']) || in_array('Dev', $menu['permission']));
                     @endphp
                     @if ($hasParentAccess)
-                        <li class="nav-item dropdown {{ setSidebarActive([$menu['active']]) }}">
+                        <li class="nav-item dropdown {{ setSidebarActive($menu['active']) }}">
                             <a class="nav-link dropdown-toggle {{ setSidebarShow($menu['show']) }}" href="#"
                                 data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
                                 aria-expanded="true">

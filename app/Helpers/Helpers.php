@@ -139,3 +139,10 @@ if (!function_exists('limit_text')) {
         return $text;
     }
 }
+
+if (!function_exists('generate_employee_code')) {
+    function generate_employee_code()
+    {
+        return 'EMP-' . date('y') . '/' . uniqid_real(6);
+    }
+}

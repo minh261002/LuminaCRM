@@ -36,10 +36,15 @@
                     <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->avatar }})"> </span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ Auth::user()->name }}</div>
-                        <div class="mt-1 small text-secondary">{{ Auth::user()->email }}</div>
+                        <div class="mt-1 small text-secondary">
+                            {{ Auth::user()->role[0]->title }}
+                        </div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="{{ route('profile') }}" class="dropdown-item">Thông tin cá nhân</a>
+                    <a href="{{ route('profile.change-password') }}" class="dropdown-item">Đổi mật khẩu</a>
+                    <div class="dropdown-divider"></div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item">Đăng xuất</button>

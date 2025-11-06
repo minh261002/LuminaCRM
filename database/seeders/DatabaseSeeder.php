@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@lumina.vn',
-            'password'=> Hash::make('password')
+            'password'=> Hash::make('password'),
+            'code' => generate_employee_code()
         ]);
 
         $this->call([
