@@ -22,15 +22,7 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                                <div class="col-12 form-group mb-3">
-                                    @include('components.pick-address', [
-                                        'label' => 'Địa chỉ cụ thể',
-                                        'name' => 'address',
-                                        'value' => old('address'),
-                                    ])
-                                    <input type="hidden" name="lat" value="{{ old('lat') }}">
-                                    <input type="hidden" name="lng" value="{{ old('lng') }}">
-                                </div>
+
                             </div>
                         </div>
                         <div class="card">
@@ -52,9 +44,6 @@
             </div>
         </div>
     </div>
-
-    @include('components.modal-pick-address')
-    @include('components.google-map-script')
 @endsection
 
 @push('scripts')

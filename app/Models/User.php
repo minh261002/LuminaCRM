@@ -74,4 +74,14 @@ class User extends Authenticatable implements CanResetPasswordContract
     {
         return !is_null($this->two_factor_secret) && !is_null($this->two_factor_confirmed_at);
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_code', 'code');
+    }
+
+    public function ward()
+    {
+        return $this->belongsTo(Ward::class, 'ward_code', 'code');
+    }
 }

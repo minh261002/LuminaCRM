@@ -18,7 +18,6 @@ Route::middleware('authenticate')->group(function(){
     Route::put('profile/update-password', [UserAccessController::class, 'updatePassword'])->name('profile.update-password');
     Route::get('change-password', [UserAccessController::class, 'changePassword'])->name('profile.change-password');
 
-    // Two Factor Authentication
     Route::prefix('two-factor-authentication')->as('two-factor.')->group(function(){
         Route::get('/', [TwoFactorController::class, 'index'])->name('index');
         Route::post('/verify', [TwoFactorController::class, 'verify'])->name('verify');
@@ -97,7 +96,6 @@ Route::middleware('authenticate')->group(function(){
             Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
         });
     });
-
 });
 
 
@@ -105,7 +103,6 @@ Route::middleware('logged_in')->group(function(){
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
 
-    // Two Factor Login
     Route::get('two-factor/login', [AuthController::class, 'showTwoFactorLogin'])->name('two-factor.login');
     Route::post('two-factor/verify-login', [AuthController::class, 'verifyTwoFactorLogin'])->name('two-factor.verify-login');
 
@@ -114,4 +111,12 @@ Route::middleware('logged_in')->group(function(){
 
     Route::get('password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [AuthController::class, 'resetPassword'])->name('password.update');
+});
+
+Route::get('clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    return "Cache is cleared";
 });
