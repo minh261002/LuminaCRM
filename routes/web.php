@@ -9,6 +9,8 @@ use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\UserAccessController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\LocationController;
 
 Route::middleware('authenticate')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -98,7 +100,6 @@ Route::middleware('authenticate')->group(function(){
     });
 });
 
-
 Route::middleware('logged_in')->group(function(){
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
@@ -111,6 +112,11 @@ Route::middleware('logged_in')->group(function(){
 
     Route::get('password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [AuthController::class, 'resetPassword'])->name('password.update');
+});
+
+Route::prefix('api')->as('api.')->group(function(){
+    Route::get('provinces', [LocationController::class, 'provinces'])->name('provinces');
+    Route::get('wards', [LocationController::class, 'wards'])->name('wards');
 });
 
 Route::get('clear-cache', function() {
