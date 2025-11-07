@@ -11,13 +11,16 @@ class ServiceServiceProvider extends ServiceProvider
         'App\Services\Permission\PermissionServiceInterface' => 'App\Services\Permission\PermissionService',
         'App\Services\Role\RoleServiceInterface' => 'App\Services\Role\RoleService',
         'App\Services\User\UserServiceInterface' => 'App\Services\User\UserService',
+        'App\Services\Branch\BranchServiceInterface' => 'App\Services\Branch\BranchService',
     ];
+
     public function register(): void
     {
         foreach ($this->services as $interface => $service) {
             $this->app->bind($interface, $service);
         }
     }
+
     /**
      * Bootstrap services.
      */
