@@ -1,5 +1,5 @@
-<a href="{{ route('permissions.edit', $id) }}" class="btn btn-sm btn-primary">
+<a href="{{ route('users.edit', $id) }}" class="btn btn-sm btn-primary">
     <i class="ti ti-pencil fs-1"></i>
 </a>
 
-<x-delete-button :id="$id" :deleteUrl="route('permissions.delete', $id)" />
+<x-delete-button :id="$id" :deleteUrl="route('users.delete', $id)" />

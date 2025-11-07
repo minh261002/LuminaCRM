@@ -83,7 +83,7 @@ class User extends Authenticatable implements CanResetPasswordContract
 
     public function ward()
     {
-        return $this->belongsTo(Ward::class, 'ward_code', 'code');
+        return $this->belongsTo(Ward::class, 'ward_code', 'ward_code');
     }
 
     public function identityDocument()

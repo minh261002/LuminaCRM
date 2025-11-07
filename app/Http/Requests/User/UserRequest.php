@@ -30,6 +30,31 @@ class UserRequest extends BaseRequest
         ];
     }
 
+    protected function methodPut()
+    {
+        return [
+            'id' => 'required|exists:users,id',
+            'name' => 'required',
+            'role_id' => 'required|exists:roles,name',
+            'email' => 'required|email|unique:users,email,'.$this->id,
+            'phone' => 'nullable|unique:users,phone,'.$this->id,
+            'province_code' => 'nullable',
+            'ward_code' => 'nullable',
+            'address' => 'nullable',
+            'gender' => 'nullable',
+            'avatar' => 'nullable|max:2048',
+            'identity_type' => 'nullable',
+            'identity_number' => 'nullable',
+            'identity_issued_at' => 'nullable',
+            'identity_issued_by' => 'nullable',
+            'identity_front_image' => 'nullable',
+            'identity_back_image' => 'nullable',
+            'identity_selfie_image' => 'nullable',
+            'password' => 'nullable|min:6|confirmed',
+            'password_confirmation' => 'nullable|min:6',
+        ];
+    }
+
     public function messages()
     {
         return [

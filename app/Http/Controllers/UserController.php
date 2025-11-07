@@ -58,6 +58,31 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function edit($id)
+    {
+        $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý nhân viên']];
+
+        $roles = $this->roleRepository->getAll()->pluck('title', 'name')->toArray();
+
+        $genders = Gender::asSelectArray();
+        $identityTypes = IdentityType::asSelectArray();
+        $user = $this->repository->findOrFail($id);
+        view()->share('model', $user);
+
+        return view('user.edit', compact('breadcrumbs', 'roles', 'genders', 'identityTypes', 'user'));
+    }
+
+    public function update(UserRequest $request)
+    {
+        if ($this->service->update($request)) {
+            notyf()->success('Cập nhật nhân viên thành công.');
+        } else {
+            notyf()->error('Cập nhật nhân viên thất bại. Vui lòng thử lại.');
+        }
+
+        return redirect()->route('users.index');
+    }
+
     public function active($id)
     {
         $user = $this->repository->find($id);
@@ -65,5 +90,12 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function delete(int $id)
+    {
+        $this->repository->delete($id);
+
+        return response()->json(['status' => 'success', 'message' => 'Xóa thông tin nhân viên thành công ']);
     }
 }
