@@ -12,26 +12,45 @@ trait ImageUploadTrait
     /**
      * Upload a single image to storage.
      *
-     * @param UploadedFile|null $file The uploaded file instance
-     * @param string $directory Target directory relative to disk root (e.g., 'images/users')
-     * @param string $disk Storage disk name (default 'public')
-     * @param string|null $preferredFilename Optional base filename without extension
-     * @return string|null Stored file path relative to disk, or null if no file
+     * - Lưu theo cấu trúc Y/m/d nếu $byDate = true
+     *
+     * @param UploadedFile|null $file
+     * @param string $directory  Base directory (e.g. 'images/users')
+     * @param string $disk       Storage disk name (default 'public')
+     * @param string|null $preferredFilename  Base filename (without ext)
+     * @param bool $byDate       Append date folders Y/m/d
+     * @return string|null       Stored path relative to disk
      */
-    protected function uploadImage(?UploadedFile $file, string $directory, string $disk = 'public', ?string $preferredFilename = null): ?string
-    {
+    protected function uploadImage(
+        ?UploadedFile $file,
+        string $directory,
+        string $disk = 'public',
+        ?string $preferredFilename = null,
+        bool $byDate = true
+    ): ?string {
         if (!$file instanceof UploadedFile) {
             return null;
         }
 
         $directory = trim($directory, '/');
+        if ($byDate) {
+            $directory .= '/' . now()->format('Y/m/d');
+        }
 
-        $extension = strtolower($file->getClientOriginalExtension() ?: $file->extension());
+        $extension = strtolower($file->getClientOriginalExtension() ?: ($file->extension() ?: $file->guessExtension() ?: 'bin'));
+
         $base = $preferredFilename
             ? Str::slug(pathinfo($preferredFilename, PATHINFO_FILENAME))
             : Str::uuid()->toString();
 
-        $filename = $base . '-' . now()->format('YmdHisv') . '.' . $extension;
+        // Tên ngắn, đủ uniqueness: base-YYYYMMDDHHIISS-rand6.ext
+        $filename = sprintf(
+            '%s-%s-%s.%s',
+            $base,
+            now()->format('YmdHis'),
+            Str::lower(Str::random(6)),
+            $extension
+        );
 
         return $file->storeAs($directory, $filename, $disk);
     }
@@ -39,12 +58,13 @@ trait ImageUploadTrait
     /**
      * Upload multiple images to storage.
      *
-     * @param iterable<int, UploadedFile|null> $files Array/Collection of UploadedFile
-     * @param string $directory Target directory relative to disk root
-     * @param string $disk Storage disk name (default 'public')
-     * @return array<int, string> List of stored file paths
+     * @param iterable<int, UploadedFile|null> $files
+     * @param string $directory
+     * @param string $disk
+     * @param bool $byDate
+     * @return array<int, string>
      */
-    protected function uploadImages(iterable $files, string $directory, string $disk = 'public'): array
+    protected function uploadImages(iterable $files, string $directory, string $disk = 'public', bool $byDate = true): array
     {
         $paths = [];
 
@@ -52,18 +72,43 @@ trait ImageUploadTrait
             $files = $files->all();
         }
 
-        foreach ($files as $index => $file) {
+        foreach ($files as $file) {
             if (!$file instanceof UploadedFile) {
                 continue;
             }
-
-            $path = $this->uploadImage($file, $directory, $disk);
+            $path = $this->uploadImage($file, $directory, $disk, null, $byDate);
             if ($path !== null) {
                 $paths[] = $path;
             }
         }
 
         return $paths;
+    }
+
+    /**
+     * Replace old image by uploading a new one, then delete the old file.
+     *
+     * @return string|null New path or null if no new file
+     */
+    protected function replaceImage(?string $oldPath, ?UploadedFile $file, string $directory, string $disk = 'public', ?string $preferredFilename = null, bool $byDate = true): ?string
+    {
+        $newPath = $this->uploadImage($file, $directory, $disk, $preferredFilename, $byDate);
+        if ($newPath && $oldPath) {
+            $this->deleteImage($oldPath, $disk);
+        }
+        return $newPath;
+    }
+
+    /**
+     * Get public URL for a stored image path.
+     */
+    protected function imageUrl(?string $path, string $disk = 'public'): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+        $path = ltrim($path, '/');
+        return Storage::disk($disk)->url($path);
     }
 
     /**
@@ -94,7 +139,6 @@ trait ImageUploadTrait
 
     /**
      * Delete multiple images; returns number of successfully deleted files.
-     * Accepts array/collection of paths.
      */
     protected function deleteImages(iterable $paths, string $disk = 'public'): int
     {
