@@ -12,6 +12,7 @@ class ServiceServiceProvider extends ServiceProvider
         'App\Services\Role\RoleServiceInterface' => 'App\Services\Role\RoleService',
         'App\Services\User\UserServiceInterface' => 'App\Services\User\UserService',
         'App\Services\Branch\BranchServiceInterface' => 'App\Services\Branch\BranchService',
+        'App\Services\Warehouse\WarehouseServiceInterface' => 'App\Services\Warehouse\WarehouseService',
     ];
 
     public function register(): void

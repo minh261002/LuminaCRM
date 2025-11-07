@@ -10,6 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\UserAccessController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -100,20 +101,38 @@ Route::middleware('authenticate')->group(function () {
     });
 
     Route::prefix('branches')->as('branches.')->group(function () {
-        Route::middleware('permission:viewRole')->group(function () {
+        Route::middleware('permission:viewBranch')->group(function () {
             Route::get('/', [BranchController::class, 'index'])->name('index');
             Route::get('/{id}/edit', [BranchController::class, 'edit'])->name('edit');
         });
-        Route::middleware('permission:createRole')->group(function () {
+        Route::middleware('permission:createBranch')->group(function () {
             Route::get('/create', [BranchController::class, 'create'])->name('create');
             Route::post('/', [BranchController::class, 'store'])->name('store');
         });
-        Route::middleware('permission:editRole')->group(function () {
+        Route::middleware('permission:editBranch')->group(function () {
             Route::put('/', [BranchController::class, 'update'])->name('update');
             Route::patch('/{id}/active', [BranchController::class, 'active'])->name('active');
         });
-        Route::middleware('permission:deleteRole')->group(function () {
+        Route::middleware('permission:deleteBranch')->group(function () {
             Route::delete('/{id}', [BranchController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('warehouses')->as('warehouses.')->group(function () {
+        Route::middleware('permission:viewWarehouse')->group(function () {
+            Route::get('/', [WarehouseController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [WarehouseController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createWarehouse')->group(function () {
+            Route::get('/create', [WarehouseController::class, 'create'])->name('create');
+            Route::post('/', [WarehouseController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editWarehouse')->group(function () {
+            Route::put('/', [WarehouseController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [WarehouseController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteWarehouse')->group(function () {
+            Route::delete('/{id}', [WarehouseController::class, 'delete'])->name('delete');
         });
     });
 });

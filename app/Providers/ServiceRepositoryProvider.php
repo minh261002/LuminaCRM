@@ -13,6 +13,7 @@ class ServiceRepositoryProvider extends ServiceProvider
         'App\Repositories\Role\RoleRepositoryInterface' => 'App\Repositories\Role\RoleRepository',
         'App\Repositories\User\UserRepositoryInterface' => 'App\Repositories\User\UserRepository',
         'App\Repositories\Branch\BranchRepositoryInterface' => 'App\Repositories\Branch\BranchRepository',
+        'App\Repositories\Warehouse\WarehouseRepositoryInterface' => 'App\Repositories\Warehouse\WarehouseRepository',
     ];
 
     /**
