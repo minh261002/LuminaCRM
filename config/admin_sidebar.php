@@ -1,6 +1,216 @@
 <?php
 
 return [
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Thông báo',
+//        'icon' => 'ti ti-bell fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Chi nhánh',
+//        'icon' => 'ti ti-building fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Hợp đồng & Báo giá',
+//        'icon' => 'ti ti-clipboard-text fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Thanh toán',
+//        'icon' => 'ti ti-credit-card fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Nhà cung cấp',
+//        'icon' => 'ti ti-truck fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Sản phẩm',
+//        'icon' => 'ti ti-box fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Đơn hàng',
+//        'icon' => 'ti ti-shopping-bag fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Hoa hồng',
+//        'icon' => 'ti ti-percentage fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Kho hàng',
+//        'icon' => 'ti ti-building-warehouse fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Khách hàng',
+//        'icon' => 'ti ti-users fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
     [
         'active' => ['users.*'],
         'show' => ['users.*'],
@@ -22,6 +232,48 @@ return [
             ]
         ]
     ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Cài đặt',
+//        'icon' => 'ti ti-settings-code fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
+//    [
+//        'active' => ['users.*'],
+//        'show' => ['users.*'],
+//        'title' => 'Sự kiện',
+//        'icon' => 'ti ti-calendar-event fs-2',
+//        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
+//        'children' => [
+//            [
+//                'title' => 'Thêm mới',
+//                'route' => 'users.create',
+//                'icon' => 'ti ti-plus fs-3 me-2',
+//                'permission' => 'createUser'
+//            ],
+//            [
+//                'title' => 'Danh sách',
+//                'route' => 'users.index',
+//                'icon' => 'ti ti-list fs-3 me-2',
+//                'permission' => 'viewUser'
+//            ]
+//        ]
+//    ],
     [
         'active' => ['roles.*'],
         'show' => ['roles.*'],

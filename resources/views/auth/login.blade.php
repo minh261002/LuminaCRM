@@ -14,7 +14,7 @@
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" name="email" autocomplete="off" id="email"
-                        value="{{ old('email') }}" />
+                        value="{{ old('email') }}" tabIndex="1"/>
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -28,7 +28,7 @@
                         </span>
                     </label>
                     <div class="input-group">
-                        <input type="password" id="password" name="password" class="form-control">
+                        <input type="password" id="password" name="password" class="form-control" tabindex="2">
                         <button class="btn" type="button" id="showPassword">
                             <i class="ti ti-eye icon me-0"></i>
                         </button>

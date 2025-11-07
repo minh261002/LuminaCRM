@@ -16,6 +16,8 @@
 @stack('libs-js')
 <script src="/assets/js/tabler.min.js"></script>
 
+<script src="{{ asset('assets/libs/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/libs/ckfinder/ckfinder.js') }}"></script>
 
 <script>
     (function($) {

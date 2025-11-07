@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->decimal('lat', 10, 7)->nullable();
-            $table->decimal('lng', 10, 7)->nullable();
+            $table->string('province_code', 20)->nullable();
+            $table->string('ward_code', 20)->nullable();
             $table->string('avatar')->default('/assets/img/not-found.jpg');
             $table->enum('gender', Gender::getValues())->nullable();
             $table->boolean('is_active')->default(true);

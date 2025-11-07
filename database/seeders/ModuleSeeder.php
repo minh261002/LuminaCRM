@@ -154,8 +154,8 @@ class ModuleSeeder extends Seeder
         DB::table('roles')->insert([
             [
                 'id' => 1,
-                'title' => 'Admin',
-                'name' => 'admin',
+                'title' => 'Developer',
+                'name' => 'developer',
                 'guard_name' => 'web',
                 'created_at' => now(),
                 'updated_at' => now(),

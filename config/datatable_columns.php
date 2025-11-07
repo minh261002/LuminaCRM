@@ -11,14 +11,14 @@ return [
         ],
         'info' => [
             'title' => 'Thông tin',
-            'orderable' => true,
+            'orderable' => false,
             'exportable' => true,
             'printable' => true,
             'addClass' => 'text-center align-middle',
         ],
         'role' => [
             'title' => 'Vai trò',
-            'orderable' => true,
+            'orderable' => false,
             'exportable' => true,
             'printable' => true,
             'addClass' => 'text-center align-middle',
