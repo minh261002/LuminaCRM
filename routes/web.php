@@ -173,6 +173,42 @@ Route::middleware('authenticate')->group(function () {
             Route::delete('/{id}', [PaymentMethodController::class, 'delete'])->name('delete');
         });
     });
+
+    Route::prefix('customer-types')->as('customer-types.')->group(function () {
+        Route::middleware('permission:viewPaymentMethod')->group(function () {
+            Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [PaymentMethodController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createPaymentMethod')->group(function () {
+            Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
+            Route::post('/', [PaymentMethodController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editPaymentMethod')->group(function () {
+            Route::put('/', [PaymentMethodController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [PaymentMethodController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deletePaymentMethod')->group(function () {
+            Route::delete('/{id}', [PaymentMethodController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('customer-regions')->as('customer-regions.')->group(function () {
+        Route::middleware('permission:viewPaymentMethod')->group(function () {
+            Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [PaymentMethodController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createPaymentMethod')->group(function () {
+            Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
+            Route::post('/', [PaymentMethodController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editPaymentMethod')->group(function () {
+            Route::put('/', [PaymentMethodController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [PaymentMethodController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deletePaymentMethod')->group(function () {
+            Route::delete('/{id}', [PaymentMethodController::class, 'delete'])->name('delete');
+        });
+    });
 });
 
 Route::middleware('logged_in')->group(function () {

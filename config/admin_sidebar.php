@@ -39,8 +39,8 @@ return [
         ],
     ],
     [
-        'active' => ['customers.*', 'customer_types.*', 'customer_regions.*'],
-        'show' => ['customers.*', 'customer_types.*', 'customer_regions.*'],
+        'active' => ['customers.*', 'customer-types.*', 'customer-regions.*'],
+        'show' => ['customers.*', 'customer-types.*', 'customer-regions.*'],
         'title' => 'Khách hàng',
         'icon' => 'ti ti-users fs-2',
         'permission' => ['viewCustomer', 'createCustomer', 'editCustomer', 'deleteCustomer',
@@ -50,13 +50,13 @@ return [
         'children' => [
             [
                 'title' => 'Phân khúc kinh doanh',
-                'route' => 'customer_types.index',
+                'route' => 'customer-types.index',
                 'icon' => 'ti ti-table-alias fs-3 me-2',
                 'permission' => 'viewCustomerType',
             ],
             [
                 'title' => 'Phân vùng địa lý',
-                'route' => 'customer_regions.index',
+                'route' => 'customer-regions.index',
                 'icon' => 'ti ti-world fs-3 me-2',
                 'permission' => 'viewCustomerRegion',
             ],
