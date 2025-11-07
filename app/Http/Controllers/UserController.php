@@ -25,6 +25,11 @@ class UserController extends Controller
         return $dataTable->render('user.index', compact('breadcrumbs'));
     }
 
+    public function create(){
+        $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý nhân viên']];
+        return view('user.create', compact('breadcrumbs'));
+    }
+
     public function active($id)
     {
         $user = $this->repository->find($id);

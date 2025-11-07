@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\UserAccessController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,13 @@ Route::middleware('authenticate')->group(function(){
     Route::get('change-password', [UserAccessController::class, 'changePassword'])->name('profile.change-password');
 
     // Two Factor Authentication
-    Route::prefix('two-factor')->as('two-factor.')->group(function(){
-        Route::get('/', [\App\Http\Controllers\TwoFactorController::class, 'index'])->name('index');
-        Route::post('/verify', [\App\Http\Controllers\TwoFactorController::class, 'verify'])->name('verify');
-        Route::get('/recovery', [\App\Http\Controllers\TwoFactorController::class, 'recovery'])->name('recovery');
-        Route::get('/recovery-codes', [\App\Http\Controllers\TwoFactorController::class, 'showRecoveryCodes'])->name('show-recovery');
-        Route::post('/regenerate-recovery', [\App\Http\Controllers\TwoFactorController::class, 'regenerateRecoveryCodes'])->name('regenerate-recovery');
-        Route::post('/disable', [\App\Http\Controllers\TwoFactorController::class, 'disable'])->name('disable');
+    Route::prefix('two-factor-authentication')->as('two-factor.')->group(function(){
+        Route::get('/', [TwoFactorController::class, 'index'])->name('index');
+        Route::post('/verify', [TwoFactorController::class, 'verify'])->name('verify');
+        Route::get('/recovery', [TwoFactorController::class, 'recovery'])->name('recovery');
+        Route::get('/recovery-codes', [TwoFactorController::class, 'showRecoveryCodes'])->name('show-recovery');
+        Route::post('/regenerate-recovery', [TwoFactorController::class, 'regenerateRecoveryCodes'])->name('regenerate-recovery');
+        Route::post('/disable', [TwoFactorController::class, 'disable'])->name('disable');
     });
 
     Route::prefix('modules')->as('module.')->group(function(){
