@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ModuleController;
@@ -95,6 +96,24 @@ Route::middleware('authenticate')->group(function () {
         });
         Route::middleware('permission:deleteRole')->group(function () {
             Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('branches')->as('branches.')->group(function () {
+        Route::middleware('permission:viewRole')->group(function () {
+            Route::get('/', [BranchController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [BranchController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createRole')->group(function () {
+            Route::get('/create', [BranchController::class, 'create'])->name('create');
+            Route::post('/', [BranchController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editRole')->group(function () {
+            Route::put('/', [BranchController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [BranchController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteRole')->group(function () {
+            Route::delete('/{id}', [BranchController::class, 'delete'])->name('delete');
         });
     });
 });
