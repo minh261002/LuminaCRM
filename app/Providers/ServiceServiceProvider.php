@@ -13,6 +13,7 @@ class ServiceServiceProvider extends ServiceProvider
         'App\Services\User\UserServiceInterface' => 'App\Services\User\UserService',
         'App\Services\Branch\BranchServiceInterface' => 'App\Services\Branch\BranchService',
         'App\Services\Warehouse\WarehouseServiceInterface' => 'App\Services\Warehouse\WarehouseService',
+        'App\Services\BranchDelivery\BranchDeliveryServiceInterface' => 'App\Services\BranchDelivery\BranchDeliveryService',
     ];
 
     public function register(): void

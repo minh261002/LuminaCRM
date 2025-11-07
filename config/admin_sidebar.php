@@ -23,11 +23,13 @@ return [
     //        ]
     //    ],
     [
-        'active' => ['branches.*', 'warehouses.*'],
-        'show' => ['branches.*', 'warehouses.*'],
+        'active' => ['branches.*', 'warehouses.*', 'branch-deliveries.*'],
+        'show' => ['branches.*', 'warehouses.*', 'branch-deliveries.*'],
         'title' => 'Cấu hình',
         'icon' => 'ti ti-settings-code fs-2',
-        'permission' => ['viewBranch', 'createBranch', 'editBranch', 'deleteBranch'],
+        'permission' => [
+            'viewBranch', 'createBranch', 'editBranch', 'deleteBranch', 'viewWarehouse', 'createWarehouse', 'editWarehouse', 'deleteWarehouse', 'viewBranchDelivery', 'createBranchDelivery', 'editBranchDelivery', 'deleteBranchDelivery',
+        ],
         'children' => [
             [
                 'title' => 'Chi nhánh',
@@ -40,6 +42,12 @@ return [
                 'route' => 'warehouses.index',
                 'icon' => 'ti ti-building-warehouse fs-3 me-2',
                 'permission' => 'viewWarehouse',
+            ],
+            [
+                'title' => 'Địa điểm giao hàng',
+                'route' => 'branch-deliveries.index',
+                'icon' => 'ti ti-location fs-3 me-2',
+                'permission' => 'viewBranchDelivery',
             ],
         ],
     ],

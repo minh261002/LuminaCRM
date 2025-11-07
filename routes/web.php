@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BranchDeliveryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ModuleController;
@@ -83,19 +84,19 @@ Route::middleware('authenticate')->group(function () {
     });
 
     Route::prefix('users')->as('users.')->group(function () {
-        Route::middleware('permission:viewRole')->group(function () {
+        Route::middleware('permission:viewUser')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
         });
-        Route::middleware('permission:createRole')->group(function () {
+        Route::middleware('permission:createUser')->group(function () {
             Route::get('/create', [UserController::class, 'create'])->name('create');
             Route::post('/', [UserController::class, 'store'])->name('store');
         });
-        Route::middleware('permission:editRole')->group(function () {
+        Route::middleware('permission:editUser')->group(function () {
             Route::put('/', [UserController::class, 'update'])->name('update');
             Route::patch('/{id}/active', [UserController::class, 'active'])->name('active');
         });
-        Route::middleware('permission:deleteRole')->group(function () {
+        Route::middleware('permission:deleteUser')->group(function () {
             Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
         });
     });
@@ -133,6 +134,24 @@ Route::middleware('authenticate')->group(function () {
         });
         Route::middleware('permission:deleteWarehouse')->group(function () {
             Route::delete('/{id}', [WarehouseController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('branch-deliveries')->as('branch-deliveries.')->group(function () {
+        Route::middleware('permission:viewBranchDelivery')->group(function () {
+            Route::get('/', [BranchDeliveryController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [BranchDeliveryController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createBranchDelivery')->group(function () {
+            Route::get('/create', [BranchDeliveryController::class, 'create'])->name('create');
+            Route::post('/', [BranchDeliveryController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editBranchDelivery')->group(function () {
+            Route::put('/', [BranchDeliveryController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [BranchDeliveryController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteBranchDelivery')->group(function () {
+            Route::delete('/{id}', [BranchDeliveryController::class, 'delete'])->name('delete');
         });
     });
 });
