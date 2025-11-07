@@ -57,10 +57,10 @@ class BranchDataTable extends BaseDataTable
         $this->customEditColumns = [
             'action' => $this->views['action'],
             'is_active' => function ($branch) {
-                return view('branch.datatable.is_active', compact('branch'))->render();
+                return view($this->views['is_active'], compact('branch'))->render();
             },
             'address' => function ($branch) {
-                return view('branch.datatable.address', compact('branch'))->render();
+                return view($this->views['address'], compact('branch'))->render();
             },
         ];
     }
