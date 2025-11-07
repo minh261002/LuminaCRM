@@ -22,6 +22,8 @@ class BranchDataTable extends BaseDataTable
     {
         $this->views = [
             'action' => 'branch.datatable.action',
+            'is_active' => 'branch.datatable.is_active',
+            'address' => 'branch.datatable.address',
         ];
     }
 
@@ -33,21 +35,32 @@ class BranchDataTable extends BaseDataTable
     public function setColumnSearch(): void
     {
 
-        $this->columnAllSearch = [0, 1, 2];
-
+        $this->columnAllSearch = [0, 1, 2, 3];
+        $this->columnSearchSelect = [
+            [
+                'column' => 3,
+                'data' => [
+                    true => 'Hoạt động',
+                    false => 'Không hoạt động',
+                ],
+            ],
+        ];
     }
 
     protected function setCustomColumns(): void
     {
-        $this->customColumns = config('datatable_columns.roles', []);
+        $this->customColumns = config('datatable_columns.branches', []);
     }
 
     protected function setCustomEditColumns(): void
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
-            'name' => function ($role) {
-                return '<code>'.$role->name.'</code>';
+            'is_active' => function ($branch) {
+                return view('branch.datatable.is_active', compact('branch'))->render();
+            },
+            'address' => function ($branch) {
+                return view('branch.datatable.address', compact('branch'))->render();
             },
         ];
     }
@@ -63,7 +76,8 @@ class BranchDataTable extends BaseDataTable
     {
         $this->customRawColumns = [
             'action',
-            'name',
+            'is_active',
+            'address',
         ];
     }
 

@@ -24,11 +24,11 @@ class Branch extends Model
 
     public function province()
     {
-        return $this->belongsTo(Location::class, 'province_code', 'code');
+        return $this->belongsTo(Province::class, 'province_code', 'province_code');
     }
 
     public function ward()
     {
-        return $this->belongsTo(Location::class, 'ward_code', 'ward_code');
+        return $this->belongsTo(Ward::class, 'ward_code', 'ward_code');
     }
 }

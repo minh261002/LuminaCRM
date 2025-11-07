@@ -78,7 +78,7 @@ class User extends Authenticatable implements CanResetPasswordContract
 
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_code', 'code');
+        return $this->belongsTo(Province::class, 'province_code', 'province_code');
     }
 
     public function ward()

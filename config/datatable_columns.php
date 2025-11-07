@@ -23,15 +23,8 @@ return [
             'printable' => true,
             'addClass' => 'text-center align-middle',
         ],
-        'status' => [
+        'is_active' => [
             'title' => 'Trạng thái',
-            'orderable' => true,
-            'exportable' => true,
-            'printable' => true,
-            'addClass' => 'text-center align-middle',
-        ],
-        'created_at' => [
-            'title' => 'Ngày tạo',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,

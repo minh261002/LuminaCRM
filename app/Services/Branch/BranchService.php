@@ -17,6 +17,11 @@ class BranchService implements BranchServiceInterface
     public function store(Request $request)
     {
         $data = $request->validated();
+        if (! isset($data['is_active'])) {
+            $data['is_active'] = 0;
+        } else {
+            $data['is_active'] = 1;
+        }
 
         return $this->repository->create($data);
     }
@@ -24,6 +29,11 @@ class BranchService implements BranchServiceInterface
     public function update(Request $request)
     {
         $data = $request->validated();
+        if (! isset($data['is_active'])) {
+            $data['is_active'] = 0;
+        } else {
+            $data['is_active'] = 1;
+        }
 
         return $this->repository->update($data['id'], $data);
     }
