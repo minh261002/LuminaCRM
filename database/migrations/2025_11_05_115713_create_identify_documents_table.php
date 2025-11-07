@@ -18,18 +18,13 @@ return new class extends Migration
 
             $table->enum('type', IdentityType::getValues());
             $table->string('number');
-            $table->string('country')->nullable();
-
             $table->date('issued_at')->nullable();
-            $table->date('expires_at')->nullable();
             $table->string('issued_by')->nullable();
 
             $table->string('front_image_path')->nullable();
             $table->string('back_image_path')->nullable();
             $table->string('selfie_image_path')->nullable();
-            $table->unique(['type','number','country']);
-
-            $table->softDeletes();
+            $table->unique(['type', 'number']);
             $table->timestamps();
         });
 

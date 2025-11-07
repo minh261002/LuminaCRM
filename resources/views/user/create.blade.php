@@ -12,7 +12,7 @@
 
         <div class="page-body">
             <div class="container-xl">
-                <form action="{{ route('users.store') }}" method="post" class="row">
+                <form action="{{ route('users.store') }}" method="post" class="row" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-9">
                         <div class="card mb-3">
@@ -36,9 +36,9 @@
                                         <label class="form-label" for="role_id">Vai trò</label>
                                         <select id="role_id" name="role_id" class="form-control select2">
                                             <option value="">Chọn vai trò</option>
-                                            @foreach ($roles as $id => $title)
-                                                <option value="{{ $id }}"
-                                                    {{ old('role_id', $model->role_id ?? null) == $id ? 'selected' : '' }}>
+                                            @foreach ($roles as $name => $title)
+                                                <option value="{{ $name }}"
+                                                    {{ old('role_id', $model->role_id ?? null) == $name ? 'selected' : '' }}>
                                                     {{ $title }}</option>
                                             @endforeach
                                         </select>
@@ -80,9 +80,14 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="identity_type">Loại giấy tờ</label>
-                                        <input type="text" id="identity_type" name="identity_type" class="form-control"
-                                            value="{{ old('identity_type', $model->identity_type ?? null) }}"
-                                            placeholder="Loại định danh cá nhân" />
+                                        <select id="identity_type" name="identity_type" class="form-control">
+                                            <option value="">Chọn loại giấy tờ</option>
+                                            @foreach ($identityTypes as $value => $label)
+                                                <option value="{{ $value }}"
+                                                    {{ old('identity_type', $model->identity_type ?? null) == $value ? 'selected' : '' }}>
+                                                    {{ $label }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('identity_type')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -97,6 +102,38 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="identity_issued_at">Ngày cấp</label>
+                                        <input type="date" id="identity_issued_at" name="identity_issued_at"
+                                            class="form-control"
+                                            value="{{ old('identity_issued_at', $model->identity_issued_at ?? null) }}"
+                                            placeholder="Ngày cấp" />
+                                        @error('identity_issued_at')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="identity_issued_by">Nơi cấp</label>
+                                        <input type="text" id="identity_issued_by" name="identity_issued_by"
+                                            class="form-control"
+                                            value="{{ old('identity_issued_by', $model->identity_issued_by ?? null) }}"
+                                            placeholder="Nơi cấp" />
+                                        @error('identity_issued_by')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4">
+                                        <x-image-upload name="identity_front_image" label="Ảnh mặt trước" :multiple="false"
+                                            accept="image/*" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <x-image-upload name="identity_back_image" label="Ảnh mặt sau" :multiple="false"
+                                            accept="image/*" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <x-image-upload name="identity_selfie_image" label="Ảnh chân dung"
+                                            :multiple="false" accept="image/*" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +141,42 @@
                     <div class="col-md-3">
                         <x-form-button :title="'Thao tác'" :backUrl="route('users.index')" :backText="'Quay lại'" :submitText="'Thêm mới'"
                             :backIcon="'ti ti-arrow-left'" :submitIcon="'ti ti-device-floppy'" :showBack="true" />
+
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Thông tin đăng nhập
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <div class="input-group">
+                                        <input type="password" id="password" name="password" class="form-control">
+                                        <button class="btn" type="button" id="showPassword">
+                                            <i class="ti ti-eye icon me-0"></i>
+                                        </button>
+                                    </div>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label">Nhập lại mật khẩu</label>
+                                    <div class="input-group">
+                                        <input type="password" id="password_confirmation" name="password_confirmation"
+                                            class="form-control" autocomplete="new-password">
+                                        <button class="btn" type="button" id="showPasswordConfirmation">
+                                            <i class="ti ti-eye icon me-0"></i>
+                                        </button>
+                                    </div>
+                                    @error('password_confirmation')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="card mt-3">
                             <div class="card-header">
@@ -126,7 +199,8 @@
                                     </div>
                                 </div>
 
-                                <x-image-upload name="avatar" label="Ảnh đại diện" :multiple="false" accept="image/*" />
+                                <x-image-upload name="avatar" label="Ảnh đại diện" :multiple="false"
+                                    accept="image/*" />
                             </div>
                         </div>
                 </form>

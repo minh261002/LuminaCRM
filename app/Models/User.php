@@ -5,8 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Enums\Gender;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,14 +15,14 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements CanResetPasswordContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, CanResetPassword, HasRoles;
+    use CanResetPassword, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
-    protected $guard = [];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,6 +64,7 @@ class User extends Authenticatable implements CanResetPasswordContract
                 return true;
             }
         }
+
         return false;
     }
 
@@ -72,7 +73,7 @@ class User extends Authenticatable implements CanResetPasswordContract
      */
     public function hasTwoFactorEnabled(): bool
     {
-        return !is_null($this->two_factor_secret) && !is_null($this->two_factor_confirmed_at);
+        return ! is_null($this->two_factor_secret) && ! is_null($this->two_factor_confirmed_at);
     }
 
     public function province()
@@ -83,5 +84,10 @@ class User extends Authenticatable implements CanResetPasswordContract
     public function ward()
     {
         return $this->belongsTo(Ward::class, 'ward_code', 'code');
+    }
+
+    public function identityDocument()
+    {
+        return $this->hasOne(IdentifyDocument::class);
     }
 }
