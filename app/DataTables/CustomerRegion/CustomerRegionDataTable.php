@@ -1,18 +1,18 @@
 <?php
 
-namespace App\DataTables\BranchDelivery;
+namespace App\DataTables\CustomerRegion;
 
 use App\DataTables\BaseDataTable;
-use App\Repositories\BranchDelivery\BranchDeliveryRepositoryInterface;
+use App\Repositories\CustomerRegion\CustomerRegionRepositoryInterface;
 
-class BranchDeliveryDataTable extends BaseDataTable
+class CustomerRegionDataTable extends BaseDataTable
 {
-    protected $nameTable = 'branchTable';
+    protected $nameTable = 'customerRegionTable';
 
     protected $repository;
 
     public function __construct(
-        BranchDeliveryRepositoryInterface $repository
+        CustomerRegionRepositoryInterface $repository
     ) {
         $this->repository = $repository;
         parent::__construct();
@@ -21,9 +21,8 @@ class BranchDeliveryDataTable extends BaseDataTable
     public function setView(): void
     {
         $this->views = [
-            'action' => 'branch-delivery.datatable.action',
-            'is_active' => 'branch-delivery.datatable.is_active',
-            'address' => 'branch-delivery.datatable.address',
+            'action' => 'customer-region.datatable.action',
+            'is_active' => 'customer-region.datatable.is_active',
         ];
     }
 
@@ -49,18 +48,15 @@ class BranchDeliveryDataTable extends BaseDataTable
 
     protected function setCustomColumns(): void
     {
-        $this->customColumns = config('datatable_columns.branch_deliveries', []);
+        $this->customColumns = config('datatable_columns.branches', []);
     }
 
     protected function setCustomEditColumns(): void
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
-            'is_active' => function ($branchDelivery) {
-                return view($this->views['is_active'], compact('branchDelivery'))->render();
-            },
-            'address' => function ($branchDelivery) {
-                return view($this->views['address'], compact('branchDelivery'))->render();
+            'is_active' => function ($branch) {
+                return view($this->views['is_active'], compact('branch'))->render();
             },
         ];
     }
@@ -77,7 +73,6 @@ class BranchDeliveryDataTable extends BaseDataTable
         $this->customRawColumns = [
             'action',
             'is_active',
-            'address',
         ];
     }
 

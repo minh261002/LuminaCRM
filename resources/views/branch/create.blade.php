@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Quản lý module hệ thống')
+@section('title', 'Quản lý chi nhánh')
 
 @section('content')
     <div class="container-fluid">

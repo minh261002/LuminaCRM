@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BranchDeliveryController;
+use App\Http\Controllers\CustomerTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ModuleController;
@@ -157,6 +158,42 @@ Route::middleware('authenticate')->group(function () {
     });
 
     Route::prefix('payment-methods')->as('payment-methods.')->group(function () {
+        Route::middleware('permission:viewPaymentMethod')->group(function () {
+            Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [PaymentMethodController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createPaymentMethod')->group(function () {
+            Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
+            Route::post('/', [PaymentMethodController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editPaymentMethod')->group(function () {
+            Route::put('/', [PaymentMethodController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [PaymentMethodController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deletePaymentMethod')->group(function () {
+            Route::delete('/{id}', [PaymentMethodController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('customer-types')->as('customer-types.')->group(function () {
+        Route::middleware('permission:viewCustomerType')->group(function () {
+            Route::get('/', [CustomerTypeController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [CustomerTypeController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createCustomerType')->group(function () {
+            Route::get('/create', [CustomerTypeController::class, 'create'])->name('create');
+            Route::post('/', [CustomerTypeController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editCustomerType')->group(function () {
+            Route::put('/', [CustomerTypeController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [CustomerTypeController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteCustomerType')->group(function () {
+            Route::delete('/{id}', [CustomerTypeController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('customer-regions')->as('customer-regions.')->group(function () {
         Route::middleware('permission:viewPaymentMethod')->group(function () {
             Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
             Route::get('/{id}/edit', [PaymentMethodController::class, 'edit'])->name('edit');

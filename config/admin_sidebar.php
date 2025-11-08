@@ -1,27 +1,6 @@
 <?php
 
 return [
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Thông báo',
-    //        'icon' => 'ti ti-bell fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
     [
         'active' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*'],
         'show' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*'],
@@ -59,174 +38,36 @@ return [
             ],
         ],
     ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Hợp đồng & Báo giá',
-    //        'icon' => 'ti ti-clipboard-text fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Thanh toán',
-    //        'icon' => 'ti ti-credit-card fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Nhà cung cấp',
-    //        'icon' => 'ti ti-truck fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Sản phẩm',
-    //        'icon' => 'ti ti-box fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Đơn hàng',
-    //        'icon' => 'ti ti-shopping-bag fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Hoa hồng',
-    //        'icon' => 'ti ti-percentage fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Kho hàng',
-    //        'icon' => 'ti ti-building-warehouse fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Khách hàng',
-    //        'icon' => 'ti ti-users fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
+    [
+        'active' => ['customers.*', 'customer-types.*', 'customer-regions.*'],
+        'show' => ['customers.*', 'customer-types.*', 'customer-regions.*'],
+        'title' => 'Khách hàng',
+        'icon' => 'ti ti-users fs-2',
+        'permission' => ['viewCustomer', 'createCustomer', 'editCustomer', 'deleteCustomer',
+            'viewCustomerType', 'createCustomerType', 'editCustomerType', 'deleteCustomerType',
+            'viewCustomerRegion', 'createCustomerRegion', 'editCustomerRegion', 'deleteCustomerRegion',
+        ],
+        'children' => [
+            [
+                'title' => 'Phân khúc kinh doanh',
+                'route' => 'customer-types.index',
+                'icon' => 'ti ti-table-alias fs-3 me-2',
+                'permission' => 'viewCustomerType',
+            ],
+            [
+                'title' => 'Phân vùng địa lý',
+                'route' => 'customer-regions.index',
+                'icon' => 'ti ti-world fs-3 me-2',
+                'permission' => 'viewCustomerRegion',
+            ],
+            [
+                'title' => 'Khách hàng',
+                'route' => 'customers.create',
+                'icon' => 'ti ti-users fs-3 me-2',
+                'permission' => 'createCustomer',
+            ],
+        ],
+    ],
     [
         'active' => ['users.*'],
         'show' => ['users.*'],
@@ -248,48 +89,6 @@ return [
             ],
         ],
     ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Cài đặt',
-    //        'icon' => 'ti ti-settings-code fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
-    //    [
-    //        'active' => ['users.*'],
-    //        'show' => ['users.*'],
-    //        'title' => 'Sự kiện',
-    //        'icon' => 'ti ti-calendar-event fs-2',
-    //        'permission' => ['viewUser', 'createUser', 'editUser', 'deleteUser'],
-    //        'children' => [
-    //            [
-    //                'title' => 'Thêm mới',
-    //                'route' => 'users.create',
-    //                'icon' => 'ti ti-plus fs-3 me-2',
-    //                'permission' => 'createUser'
-    //            ],
-    //            [
-    //                'title' => 'Danh sách',
-    //                'route' => 'users.index',
-    //                'icon' => 'ti ti-list fs-3 me-2',
-    //                'permission' => 'viewUser'
-    //            ]
-    //        ]
-    //    ],
     [
         'active' => ['roles.*'],
         'show' => ['roles.*'],

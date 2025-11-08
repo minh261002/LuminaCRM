@@ -16,6 +16,8 @@ class ServiceRepositoryProvider extends ServiceProvider
         'App\Repositories\Warehouse\WarehouseRepositoryInterface' => 'App\Repositories\Warehouse\WarehouseRepository',
         'App\Repositories\BranchDelivery\BranchDeliveryRepositoryInterface' => 'App\Repositories\BranchDelivery\BranchDeliveryRepository',
         'App\Repositories\PaymentMethod\PaymentMethodRepositoryInterface' => 'App\Repositories\PaymentMethod\PaymentMethodRepository',
+        'App\Repositories\CustomerType\CustomerTypeRepositoryInterface' => 'App\Repositories\CustomerType\CustomerTypeRepository',
+        'App\Repositories\CustomerRegion\CustomerRegionRepositoryInterface' => 'App\Repositories\CustomerRegion\CustomerRegionRepository',
     ];
 
     /**
