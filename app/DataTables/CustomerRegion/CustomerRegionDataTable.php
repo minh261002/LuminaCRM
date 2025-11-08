@@ -1,18 +1,18 @@
 <?php
 
-namespace App\DataTables\Branch;
+namespace App\DataTables\CustomerRegion;
 
 use App\DataTables\BaseDataTable;
-use App\Repositories\Branch\BranchRepositoryInterface;
+use App\Repositories\CustomerRegion\CustomerRegionRepositoryInterface;
 
 class CustomerRegionDataTable extends BaseDataTable
 {
-    protected $nameTable = 'branchTable';
+    protected $nameTable = 'customerRegionTable';
 
     protected $repository;
 
     public function __construct(
-        BranchRepositoryInterface $repository
+        CustomerRegionRepositoryInterface $repository
     ) {
         $this->repository = $repository;
         parent::__construct();
@@ -21,9 +21,8 @@ class CustomerRegionDataTable extends BaseDataTable
     public function setView(): void
     {
         $this->views = [
-            'action' => 'branch.datatable.action',
-            'is_active' => 'branch.datatable.is_active',
-            'address' => 'branch.datatable.address',
+            'action' => 'customer-region.datatable.action',
+            'is_active' => 'customer-region.datatable.is_active',
         ];
     }
 
@@ -59,9 +58,6 @@ class CustomerRegionDataTable extends BaseDataTable
             'is_active' => function ($branch) {
                 return view($this->views['is_active'], compact('branch'))->render();
             },
-            'address' => function ($branch) {
-                return view($this->views['address'], compact('branch'))->render();
-            },
         ];
     }
 
@@ -77,7 +73,6 @@ class CustomerRegionDataTable extends BaseDataTable
         $this->customRawColumns = [
             'action',
             'is_active',
-            'address',
         ];
     }
 
