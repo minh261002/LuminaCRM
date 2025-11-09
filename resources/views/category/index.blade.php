@@ -53,14 +53,14 @@
 
     <script>
         $(document).ready(function() {
-            $(document).on('change', '.toggle-branch-active', function() {
+            $(document).on('change', '.toggle-category-active', function() {
                 var isActive = $(this).is(':checked');
                 var id = $(this).data('id');
                 var checkbox = $(this);
-                var label = checkbox.siblings('.label-branch-active');
+                var label = checkbox.siblings('.label-category-active');
 
                 if (!id) {
-                    console.error('Branch ID not found');
+                    console.error('Category ID not found');
                     checkbox.prop('checked', !isActive);
                     return;
                 }
@@ -68,7 +68,7 @@
                 checkbox.prop('disabled', true);
 
                 $.ajax({
-                    url: '{{ route('branches.active', ':id') }}'.replace(':id', id),
+                    url: '{{ route('categories.active', ':id') }}'.replace(':id', id),
                     method: 'PATCH',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

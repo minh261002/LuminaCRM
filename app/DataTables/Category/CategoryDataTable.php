@@ -35,11 +35,11 @@ class CategoryDataTable extends BaseDataTable
     public function setColumnSearch(): void
     {
 
-        $this->columnAllSearch = [1, 2, 3];
-        $this->columnSearchDate = [3];
+        $this->columnAllSearch = [1, 2, 3, 4];
+        $this->columnSearchDate = [4];
         $this->columnSearchSelect = [
             [
-                'column' => 2,
+                'column' => 3,
                 'data' => [
                     true => 'Hoạt động',
                     false => 'Không hoạt động',
@@ -57,11 +57,15 @@ class CategoryDataTable extends BaseDataTable
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
+            'created_at' => '{{formatDate($created_at)}}',
             'is_active' => function ($category) {
                 return view($this->views['is_active'], compact('category'))->render();
             },
             'image' => function ($category) {
                 return view($this->views['image'], compact('category'))->render();
+            },
+            'parent_id' => function ($category) {
+                return $category->parent ? $category->parent->name : '---';
             },
         ];
     }
@@ -85,7 +89,11 @@ class CategoryDataTable extends BaseDataTable
     public function setCustomFilterColumns(): void
     {
         $this->customFilterColumns = [
-            //
+            'parent_id' => function ($query, $keyword) {
+                $query->whereHas('parent', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                });
+            },
         ];
     }
 }

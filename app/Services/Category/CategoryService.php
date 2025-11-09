@@ -24,6 +24,12 @@ class CategoryService implements CategoryServiceInterface
         $this->data = $request->validated();
         $this->data['image'] = $this->uploadImage($request->file('image'), 'images/categories');
 
+        if (! isset($this->data['is_active'])) {
+            $this->data['is_active'] = 0;
+        } else {
+            $this->data['is_active'] = 1;
+        }
+
         return $this->repository->create($this->data);
     }
 
@@ -31,6 +37,12 @@ class CategoryService implements CategoryServiceInterface
     {
         $this->data = $request->validated();
         $id = $this->data['id'];
+
+        if (! isset($this->data['is_active'])) {
+            $this->data['is_active'] = 0;
+        } else {
+            $this->data['is_active'] = 1;
+        }
 
         $category = $this->repository->find($id);
 

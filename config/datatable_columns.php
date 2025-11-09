@@ -16,6 +16,13 @@ return [
             'printable' => true,
             'addClass' => 'text-center align-middle',
         ],
+        'parent_id' => [
+            'title' => 'Danh mục cha',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
         'is_active' => [
             'title' => 'Trạng thái',
             'orderable' => true,
