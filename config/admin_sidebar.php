@@ -2,14 +2,16 @@
 
 return [
     [
-        'active' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*'],
-        'show' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*'],
+        'active' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*', 'categories.*'],
+        'show' => ['branches.*', 'warehouses.*', 'branch-deliveries.*', 'payment-methods.*', 'categories.*'],
         'title' => 'Cấu hình',
         'icon' => 'ti ti-settings-code fs-2',
         'permission' => [
             'viewBranch', 'createBranch', 'editBranch', 'deleteBranch',
-            'viewWarehouse', 'createWarehouse', 'editWarehouse',
-            'deleteWarehouse', 'viewBranchDelivery', 'createBranchDelivery', 'editBranchDelivery', 'deleteBranchDelivery', 'viewPaymentMethod', 'createPaymentMethod', 'editPaymentMethod', 'deletePaymentMethod',
+            'viewWarehouse', 'createWarehouse', 'editWarehouse', 'deleteWarehouse',
+            'viewBranchDelivery', 'createBranchDelivery', 'editBranchDelivery', 'deleteBranchDelivery',
+            'viewPaymentMethod', 'createPaymentMethod', 'editPaymentMethod', 'deletePaymentMethod',
+            'viewCategory', 'createCategory', 'editCategory', 'deleteCategory',
         ],
         'children' => [
             [
@@ -35,6 +37,12 @@ return [
                 'route' => 'payment-methods.index',
                 'icon' => 'ti ti-credit-card fs-3 me-2',
                 'permission' => 'viewPaymentMethod',
+            ],
+            [
+                'title' => 'Danh mục sản phẩm',
+                'route' => 'categories.index',
+                'icon' => 'ti ti-align-box-left-stretch fs-3 me-2',
+                'permission' => 'viewCategory',
             ],
         ],
     ],

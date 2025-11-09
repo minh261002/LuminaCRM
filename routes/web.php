@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BranchDeliveryController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerRegionController;
 use App\Http\Controllers\CustomerTypeController;
 use App\Http\Controllers\DashboardController;
@@ -211,6 +212,24 @@ Route::middleware('authenticate')->group(function () {
             Route::delete('/{id}', [CustomerRegionController::class, 'delete'])->name('delete');
         });
     });
+
+    Route::prefix('categories')->as('categories.')->group(function () {
+        Route::middleware('permission:viewCategory')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createCategory')->group(function () {
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('/', [CategoryController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editCategory')->group(function () {
+            Route::put('/', [CategoryController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [CategoryController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteCategory')->group(function () {
+            Route::delete('/{id}', [CategoryController::class, 'delete'])->name('delete');
+        });
+    });
 });
 
 Route::middleware('logged_in')->group(function () {
@@ -233,10 +252,17 @@ Route::prefix('api')->as('api.')->group(function () {
 });
 
 Route::get('clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('permission:cache-reset');
 
-    return 'Cache is cleared';
+    return redirect()->back();
 });
+
+if (app()->environment('local')) {
+    Route::get('/_test-error/{code}', function ($code) {
+        // if ((int) $code === 500) {
+        //     throw new \Exception('Test 500 exception');
+        // }
+        abort((int) $code);
+    });
+}
