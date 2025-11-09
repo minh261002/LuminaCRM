@@ -1,6 +1,43 @@
 <?php
 
 return [
+    'customer_regions' => [
+        'code' => [
+            'title' => 'Mã vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'parent_region_id' => [
+            'title' => 'Thuộc vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
     'customer_types' => [
         'code' => [
             'title' => 'Mã phân khúc',

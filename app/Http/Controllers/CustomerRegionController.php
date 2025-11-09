@@ -29,8 +29,9 @@ class CustomerRegionController extends Controller
     public function create()
     {
         $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý phân phân vùng địa lý']];
+        $regions = $this->repository->getAll()->pluck('name', 'id');
 
-        return view('customer-type.create', compact('breadcrumbs'));
+        return view('customer-region.create', compact('breadcrumbs', 'regions'));
     }
 
     public function store(CustomerRegionRequest $request)
@@ -47,10 +48,11 @@ class CustomerRegionController extends Controller
     public function edit($id)
     {
         $breadcrumbs = [['name' => 'Bảng điều khiển', 'url' => route('dashboard')], ['name' => 'Quản lý phân phân vùng địa lý']];
-        $customerType = $this->repository->find($id);
-        view()->share('model', $customerType);
+        $customerRegion = $this->repository->find($id);
+        $regions = $this->repository->getAll()->pluck('name', 'id');
+        view()->share('model', $customerRegion);
 
-        return view('customer-region.edit', compact('breadcrumbs', 'customerType'));
+        return view('customer-region.edit', compact('breadcrumbs', 'customerRegion', 'regions'));
     }
 
     public function update(CustomerRegionRequest $request)

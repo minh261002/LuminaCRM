@@ -48,15 +48,18 @@ class CustomerRegionDataTable extends BaseDataTable
 
     protected function setCustomColumns(): void
     {
-        $this->customColumns = config('datatable_columns.branches', []);
+        $this->customColumns = config('datatable_columns.customer_regions', []);
     }
 
     protected function setCustomEditColumns(): void
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
-            'is_active' => function ($branch) {
-                return view($this->views['is_active'], compact('branch'))->render();
+            'is_active' => function ($customerRegion) {
+                return view($this->views['is_active'], compact('customerRegion'))->render();
+            },
+            'parent_region_id' => function ($customerRegion) {
+                return $customerRegion->parent ? $customerRegion->parent->name : '-';
             },
         ];
     }
@@ -79,7 +82,11 @@ class CustomerRegionDataTable extends BaseDataTable
     public function setCustomFilterColumns(): void
     {
         $this->customFilterColumns = [
-            //
+            'parent_region_id' => function ($query, $keyword) {
+                $query->whereHas('parent', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%{$keyword}%");
+                });
+            },
         ];
     }
 }

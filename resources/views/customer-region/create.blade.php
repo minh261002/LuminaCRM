@@ -1,28 +1,32 @@
 @extends('layouts.master')
 
-@section('title', 'Quản lý phân khúc khách hàng')
+@section('title', 'Quản lý phân vùng địa lý')
+
+@push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 
 @section('content')
     <div class="container-fluid">
-        <x-page-heading :title="'Quản lý phân khúc khách hàng'" :breadcrumbs="$breadcrumbs">
+        <x-page-heading :title="'Quản lý phân vùng địa lý'" :breadcrumbs="$breadcrumbs">
         </x-page-heading>
 
         <div class="page-body">
             <div class="container-xl">
-                <form action="{{ route('customer-types.store') }}" method="post" class="row">
+                <form action="{{ route('customer-regions.store') }}" method="post" class="row">
                     @csrf
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Thông tin phân khúc khách hàng
+                                    Thông tin phân vùng địa lý
                                 </h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="code" class="form-label">Mã phân khúc khách hàng</label>
+                                            <label for="code" class="form-label">Mã vùng</label>
                                             <input type="text" name="code" id="code" class="form-control"
                                                 value="{{ old('code') }}">
                                             @error('code')
@@ -32,7 +36,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="name" class="form-label">Tên phân khúc khách hàng</label>
+                                            <label for="name" class="form-label">Tên vùng</label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 value="{{ old('name') }}">
                                             @error('name')
@@ -40,33 +44,19 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="discount_percentage" class="form-label">Chiết khấu (%)</label>
-                                            <input type="text" name="discount_percentage" id="discount_percentage"
-                                                class="form-control" value="{{ old('discount_percentage') }}">
-                                            @error('discount_percentage')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="credit_days" class="form-label">Số ngày tín dụng</label>
-                                            <input type="text" name="credit_days" id="credit_days" class="form-control"
-                                                value="{{ old('credit_days') }}">
-                                            @error('credit_days')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="priority_level" class="form-label">Cấp độ ưu tiên</label>
-                                            <input type="text" name="priority_level" id="priority_level"
-                                                class="form-control" value="{{ old('priority_level') }}">
-                                            @error('priority_level')
+                                            <label for="parent_region_id" class="form-label">Thuộc vùng</label>
+                                            <select name="parent_region_id" id="parent_region_id"
+                                                class="form-control select2">
+                                                <option value="">-- Chọn vùng --</option>
+                                                @foreach ($regions as $id => $name)
+                                                    <option value="{{ $id }}"
+                                                        {{ old('parent_region_id') == $id ? 'selected' : '' }}>
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('parent_region_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -109,3 +99,12 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $('.select2').select2({
+            theme: 'bootstrap-5'
+        });
+    </script>
+@endpush

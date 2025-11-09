@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', 'Quản lý phân khúc khách hàng')
+@section('title', 'Quản lý phân phân vùng địa lý')
 
 @push('styles')
 @endpush
 
 @section('content')
     <div class="">
-        <x-page-heading :title="'Quản lý phân khúc khách hàng'" :breadcrumbs="$breadcrumbs">
+        <x-page-heading :title="'Quản lý phân phân vùng địa lý'" :breadcrumbs="$breadcrumbs">
         </x-page-heading>
 
         <div class="page-body">
@@ -16,10 +16,10 @@
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">
-                                Danh sách phân khúc khách hàng
+                                Danh sách phân phân vùng địa lý
                             </h3>
                             <div class="card-actions">
-                                <a href="{{ route('customer-types.create') }}" class="btn btn-primary">
+                                <a href="{{ route('customer-regions.create') }}" class="btn btn-primary">
                                     <i class="ti ti-plus fs-4 me-1"></i>
                                     Thêm mới
                                 </a>
@@ -53,14 +53,14 @@
 
     <script>
         $(document).ready(function() {
-            $(document).on('change', '.toggle-customer-type-active', function() {
+            $(document).on('change', '.toggle-customer-region-active', function() {
                 var isActive = $(this).is(':checked');
                 var id = $(this).data('id');
                 var checkbox = $(this);
-                var label = checkbox.siblings('.label-customer-type-active');
+                var label = checkbox.siblings('.label-customer-region-active');
 
                 if (!id) {
-                    console.error('Customer Type ID not found');
+                    console.error('Customer Region ID not found');
                     checkbox.prop('checked', !isActive);
                     return;
                 }
@@ -68,7 +68,7 @@
                 checkbox.prop('disabled', true);
 
                 $.ajax({
-                    url: '{{ route('customer-types.active', ':id') }}'.replace(':id', id),
+                    url: '{{ route('customer-regions.active', ':id') }}'.replace(':id', id),
                     method: 'PATCH',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
