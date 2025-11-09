@@ -1,6 +1,293 @@
 <?php
 
 return [
+    'categories' => [
+        'image' => [
+            'title' => 'Ảnh',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle w-100px',
+        ],
+        'name' => [
+            'title' => 'Tên danh mục',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'parent_id' => [
+            'title' => 'Danh mục cha',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'customer_regions' => [
+        'code' => [
+            'title' => 'Mã vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'parent_region_id' => [
+            'title' => 'Thuộc vùng',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'customer_types' => [
+        'code' => [
+            'title' => 'Mã phân khúc',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên phân khúc',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'discount_percentage' => [
+            'title' => 'Chiết khấu (%)',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'priority_level' => [
+            'title' => 'Ưu tiên',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'payment_methods' => [
+        'icon' => [
+            'title' => 'Icon',
+            'orderable' => false,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên phương thức',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'description' => [
+            'title' => 'Mô tả',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'branch_deliveries' => [
+        'code' => [
+            'title' => 'Mã địa điểm',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên địa điểm',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'address' => [
+            'title' => 'Địa chỉ',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'warehouses' => [
+        'code' => [
+            'title' => 'Mã kho',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'branch_id' => [
+            'title' => 'Chi nhánh',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên kho',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'created_at' => [
+            'title' => 'Ngày tạo',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
+    'branches' => [
+        'code' => [
+            'title' => 'Mã chi nhánh',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'name' => [
+            'title' => 'Tên chi nhánh',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'address' => [
+            'title' => 'Địa chỉ',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'is_active' => [
+            'title' => 'Trạng thái',
+            'orderable' => true,
+            'exportable' => true,
+            'printable' => true,
+            'addClass' => 'text-center align-middle',
+        ],
+        'action' => [
+            'title' => 'Thao tác',
+            'orderable' => false,
+            'exportable' => false,
+            'printable' => false,
+            'addClass' => 'text-center align-middle',
+        ],
+    ],
     'users' => [
         'code' => [
             'title' => 'Nhân viên',
@@ -51,28 +338,28 @@ return [
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'name' => [
             'title' => 'Vai trò (ROLE_NAME)',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'guard_name' => [
             'title' => 'Nhóm quyền (GUARD_NAME)',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'action' => [
             'title' => 'Thao tác',
             'orderable' => false,
             'exportable' => false,
             'printable' => false,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
     ],
     'permissions' => [
@@ -81,42 +368,42 @@ return [
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'name' => [
             'title' => 'Quyền (PERMISSION_NAME)',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'guard_name' => [
             'title' => 'Nhóm quyền (GUARD_NAME)',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'module_id' => [
             'title' => 'Module',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'created_at' => [
             'title' => 'Ngày tạo',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'action' => [
             'title' => 'Thao tác',
             'orderable' => false,
             'exportable' => false,
             'printable' => false,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
     ],
     'modules' => [
@@ -125,35 +412,35 @@ return [
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'description' => [
             'title' => 'Mô tả',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'status' => [
             'title' => 'Trạng thái',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'created_at' => [
             'title' => 'Ngày bắt đầu',
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
         'action' => [
             'title' => 'Thao tác',
             'orderable' => false,
             'exportable' => false,
             'printable' => false,
-            'addClass' => 'text-center align-middle'
+            'addClass' => 'text-center align-middle',
         ],
     ],
 ];

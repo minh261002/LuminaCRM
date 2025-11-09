@@ -1,14 +1,21 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BranchDeliveryController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerRegionController;
+use App\Http\Controllers\CustomerTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\UserAccessController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -81,20 +88,146 @@ Route::middleware('authenticate')->group(function () {
     });
 
     Route::prefix('users')->as('users.')->group(function () {
-        Route::middleware('permission:viewRole')->group(function () {
+        Route::middleware('permission:viewUser')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
         });
-        Route::middleware('permission:createRole')->group(function () {
+        Route::middleware('permission:createUser')->group(function () {
             Route::get('/create', [UserController::class, 'create'])->name('create');
             Route::post('/', [UserController::class, 'store'])->name('store');
         });
-        Route::middleware('permission:editRole')->group(function () {
+        Route::middleware('permission:editUser')->group(function () {
             Route::put('/', [UserController::class, 'update'])->name('update');
             Route::patch('/{id}/active', [UserController::class, 'active'])->name('active');
         });
-        Route::middleware('permission:deleteRole')->group(function () {
+        Route::middleware('permission:deleteUser')->group(function () {
             Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('branches')->as('branches.')->group(function () {
+        Route::middleware('permission:viewBranch')->group(function () {
+            Route::get('/', [BranchController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [BranchController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createBranch')->group(function () {
+            Route::get('/create', [BranchController::class, 'create'])->name('create');
+            Route::post('/', [BranchController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editBranch')->group(function () {
+            Route::put('/', [BranchController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [BranchController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteBranch')->group(function () {
+            Route::delete('/{id}', [BranchController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('warehouses')->as('warehouses.')->group(function () {
+        Route::middleware('permission:viewWarehouse')->group(function () {
+            Route::get('/', [WarehouseController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [WarehouseController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createWarehouse')->group(function () {
+            Route::get('/create', [WarehouseController::class, 'create'])->name('create');
+            Route::post('/', [WarehouseController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editWarehouse')->group(function () {
+            Route::put('/', [WarehouseController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [WarehouseController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteWarehouse')->group(function () {
+            Route::delete('/{id}', [WarehouseController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('branch-deliveries')->as('branch-deliveries.')->group(function () {
+        Route::middleware('permission:viewBranchDelivery')->group(function () {
+            Route::get('/', [BranchDeliveryController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [BranchDeliveryController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createBranchDelivery')->group(function () {
+            Route::get('/create', [BranchDeliveryController::class, 'create'])->name('create');
+            Route::post('/', [BranchDeliveryController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editBranchDelivery')->group(function () {
+            Route::put('/', [BranchDeliveryController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [BranchDeliveryController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteBranchDelivery')->group(function () {
+            Route::delete('/{id}', [BranchDeliveryController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('payment-methods')->as('payment-methods.')->group(function () {
+        Route::middleware('permission:viewPaymentMethod')->group(function () {
+            Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [PaymentMethodController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createPaymentMethod')->group(function () {
+            Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
+            Route::post('/', [PaymentMethodController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editPaymentMethod')->group(function () {
+            Route::put('/', [PaymentMethodController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [PaymentMethodController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deletePaymentMethod')->group(function () {
+            Route::delete('/{id}', [PaymentMethodController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('customer-types')->as('customer-types.')->group(function () {
+        Route::middleware('permission:viewCustomerType')->group(function () {
+            Route::get('/', [CustomerTypeController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [CustomerTypeController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createCustomerType')->group(function () {
+            Route::get('/create', [CustomerTypeController::class, 'create'])->name('create');
+            Route::post('/', [CustomerTypeController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editCustomerType')->group(function () {
+            Route::put('/', [CustomerTypeController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [CustomerTypeController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteCustomerType')->group(function () {
+            Route::delete('/{id}', [CustomerTypeController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('customer-regions')->as('customer-regions.')->group(function () {
+        Route::middleware('permission:viewCustomerRegion')->group(function () {
+            Route::get('/', [CustomerRegionController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [CustomerRegionController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createCustomerRegion')->group(function () {
+            Route::get('/create', [CustomerRegionController::class, 'create'])->name('create');
+            Route::post('/', [CustomerRegionController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editCustomerRegion')->group(function () {
+            Route::put('/', [CustomerRegionController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [CustomerRegionController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteCustomerRegion')->group(function () {
+            Route::delete('/{id}', [CustomerRegionController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::prefix('categories')->as('categories.')->group(function () {
+        Route::middleware('permission:viewCategory')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('edit');
+        });
+        Route::middleware('permission:createCategory')->group(function () {
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('/', [CategoryController::class, 'store'])->name('store');
+        });
+        Route::middleware('permission:editCategory')->group(function () {
+            Route::put('/', [CategoryController::class, 'update'])->name('update');
+            Route::patch('/{id}/active', [CategoryController::class, 'active'])->name('active');
+        });
+        Route::middleware('permission:deleteCategory')->group(function () {
+            Route::delete('/{id}', [CategoryController::class, 'delete'])->name('delete');
         });
     });
 });
@@ -119,10 +252,17 @@ Route::prefix('api')->as('api.')->group(function () {
 });
 
 Route::get('clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('permission:cache-reset');
 
-    return 'Cache is cleared';
+    return redirect()->back();
 });
+
+if (app()->environment('local')) {
+    Route::get('/_test-error/{code}', function ($code) {
+        // if ((int) $code === 500) {
+        //     throw new \Exception('Test 500 exception');
+        // }
+        abort((int) $code);
+    });
+}
