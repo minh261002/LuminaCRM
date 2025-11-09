@@ -1,18 +1,18 @@
 <?php
 
-namespace App\DataTables\CustomerRegion;
+namespace App\DataTables\Category;
 
 use App\DataTables\BaseDataTable;
-use App\Repositories\CustomerRegion\CustomerRegionRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
-class CustomerRegionDataTable extends BaseDataTable
+class CategoryDataTable extends BaseDataTable
 {
-    protected $nameTable = 'customerRegionTable';
+    protected $nameTable = 'categoryTable';
 
     protected $repository;
 
     public function __construct(
-        CustomerRegionRepositoryInterface $repository
+        CategoryRepositoryInterface $repository
     ) {
         $this->repository = $repository;
         parent::__construct();
@@ -21,8 +21,9 @@ class CustomerRegionDataTable extends BaseDataTable
     public function setView(): void
     {
         $this->views = [
-            'action' => 'customer-region.datatable.action',
-            'is_active' => 'customer-region.datatable.is_active',
+            'action' => 'category.datatable.action',
+            'is_active' => 'category.datatable.is_active',
+            'image' => 'category.datatable.image',
         ];
     }
 
@@ -34,7 +35,8 @@ class CustomerRegionDataTable extends BaseDataTable
     public function setColumnSearch(): void
     {
 
-        $this->columnAllSearch = [0, 1, 2, 3];
+        $this->columnAllSearch = [1, 2, 3, 4];
+        $this->columnSearchDate = [4];
         $this->columnSearchSelect = [
             [
                 'column' => 3,
@@ -48,18 +50,22 @@ class CustomerRegionDataTable extends BaseDataTable
 
     protected function setCustomColumns(): void
     {
-        $this->customColumns = config('datatable_columns.customer_regions', []);
+        $this->customColumns = config('datatable_columns.categories', []);
     }
 
     protected function setCustomEditColumns(): void
     {
         $this->customEditColumns = [
             'action' => $this->views['action'],
-            'is_active' => function ($customerRegion) {
-                return view($this->views['is_active'], compact('customerRegion'))->render();
+            'created_at' => '{{formatDate($created_at)}}',
+            'is_active' => function ($category) {
+                return view($this->views['is_active'], compact('category'))->render();
             },
-            'parent_region_id' => function ($customerRegion) {
-                return $customerRegion->parent ? $customerRegion->parent->name : '-';
+            'image' => function ($category) {
+                return view($this->views['image'], compact('category'))->render();
+            },
+            'parent_id' => function ($category) {
+                return $category->parent ? $category->parent->name : '---';
             },
         ];
     }
@@ -76,15 +82,16 @@ class CustomerRegionDataTable extends BaseDataTable
         $this->customRawColumns = [
             'action',
             'is_active',
+            'image',
         ];
     }
 
     public function setCustomFilterColumns(): void
     {
         $this->customFilterColumns = [
-            'parent_region_id' => function ($query, $keyword) {
+            'parent_id' => function ($query, $keyword) {
                 $query->whereHas('parent', function ($q) use ($keyword) {
-                    $q->where('name', 'like', "%{$keyword}%");
+                    $q->where('name', 'like', "%$keyword%");
                 });
             },
         ];

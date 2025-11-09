@@ -9,7 +9,7 @@
 
         <div class="page-body">
             <div class="container-xl">
-                <form action="{{ route('customer-types.update') }}" method="post" class="row">
+                <form action="{{ route('customer-regions.update') }}" method="post" class="row">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $model->id }}">
@@ -24,7 +24,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="code" class="form-label">Mã phân khúc khách hàng</label>
+                                            <label for="code" class="form-label">Mã vùng</label>
                                             <input type="text" name="code" id="code" class="form-control"
                                                 value="{{ old('code', $model->code) }}">
                                             @error('code')
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="name" class="form-label">Tên phân khúc khách hàng</label>
+                                            <label for="name" class="form-label">Tên vùng</label>
                                             <input type="text" name="name" id="name" class="form-control"
                                                 value="{{ old('name', $model->name) }}">
                                             @error('name')
@@ -42,35 +42,19 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label for="discount_percentage" class="form-label">Chiết khấu (%)</label>
-                                            <input type="text" name="discount_percentage" id="discount_percentage"
-                                                class="form-control"
-                                                value="{{ old('discount_percentage', $model->discount_percentage) }}">
-                                            @error('discount_percentage')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="credit_days" class="form-label">Số ngày tín dụng</label>
-                                            <input type="text" name="credit_days" id="credit_days" class="form-control"
-                                                value="{{ old('credit_days', $model->credit_days) }}">
-                                            @error('credit_days')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-3">
-                                            <label for="priority_level" class="form-label">Cấp độ ưu tiên</label>
-                                            <input type="text" name="priority_level" id="priority_level"
-                                                class="form-control"
-                                                value="{{ old('priority_level', $model->priority_level) }}">
-                                            @error('priority_level')
+                                            <label for="parent_region_id" class="form-label">Thuộc vùng</label>
+                                            <select name="parent_region_id" id="parent_region_id"
+                                                class="form-control select2">
+                                                <option value="">-- Chọn vùng --</option>
+                                                @foreach ($regions as $id => $name)
+                                                    <option value="{{ $id }}"
+                                                        {{ old('parent_region_id', $model->parent_region_id) == $id ? 'selected' : '' }}>
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('parent_region_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
